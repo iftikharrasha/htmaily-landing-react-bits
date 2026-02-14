@@ -72,7 +72,7 @@ const HeroSection = () => {
           <div className="mt-4 mb-20 w-2/3">
             <Link
               href="/playground"
-              className="inline-flex items-center gap-2 rounded-full bg-[#6ED3D3] px-8 py-2 text-base font-semibold text-black shadow-lg shadow-[#6ED3D3]/40 transition-all hover:bg-[#5ac0c0] hover:shadow-xl hover:shadow-[#6ED3D3]/50"
+              className="inline-flex items-center gap-2 rounded-full bg-[#6ED3D3] px-8 py-2 text-base font-semibold text-black shadow-sm shadow-[#6ED3D3]/40 transition-all hover:bg-[#5ac0c0] hover:shadow-lg hover:shadow-[#6ED3D3]/40"
             >
               <span>Try it for Free</span>
               <Image

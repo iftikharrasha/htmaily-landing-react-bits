@@ -32,7 +32,7 @@ export default function TestimonialLoop({
       gap={12}
       logoHeight={260}
       fadeOut
-      fadeOutColor="#ffffff"
+      fadeOutColor="#000000"
       ariaLabel="Customer testimonials"
       renderItem={(item) => (
         <div

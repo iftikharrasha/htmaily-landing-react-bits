@@ -9,7 +9,7 @@ type TemplateItem = {
 }
 
 const templates: TemplateItem[] = Array.from({ length: 10 }, (_, i) => ({
-  src: "/preview.png",
+  src: `/preview-${i + 1}.png`,
   alt: `Template ${i + 1}`,
 }))
 
@@ -22,18 +22,18 @@ export default function TemplateLoop() {
           <h2
             className="text-4xl font-bold text-[#FAFAFA]"
           >
-            Explore All Templates
+            Explore Templates
           </h2>
         </div>
 
         {/* Infinite loop template showcase */}
         <LogoLoop
             logos={templates}
-            speed={80}
-            hoverSpeed={20}
+            speed={100}
+            hoverSpeed={30}
             direction="left"
             gap={32}
-            logoHeight={368}
+            logoHeight={600}
             fadeOut
             fadeOutColor="#000000"
             ariaLabel="Template previews"
@@ -54,13 +54,14 @@ export default function TemplateLoop() {
                         <Image
                             src={item.src}
                             alt={item.alt}
-                            width={368}
-                            height={460}
+                            width={300}
+                            height={600}
                             className="
                                 w-full h-auto object-cover
                                 opacity-70
                                 transition-opacity duration-300
                                 hover:opacity-100
+                                rounded-lg
                             "
                             loading="lazy"
                         />

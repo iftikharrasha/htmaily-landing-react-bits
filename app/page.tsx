@@ -1,5 +1,6 @@
 import HeroSection from "./components/HeroSection";
 import HowItWorks from "./components/HowItWorks";
+import SloganText from "./components/SloganText";
 import TemplateLoop from "./components/TemplateLoop";
 import TestimonialsSection from "./components/TestimonialsSection";
 
@@ -10,6 +11,7 @@ export default function Home() {
           <TemplateLoop />
           <HowItWorks />
           <TestimonialsSection/>
+          <SloganText/>
       </main>
   );
 }

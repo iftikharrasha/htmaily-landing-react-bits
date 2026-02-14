@@ -76,7 +76,7 @@ export default function CategoriesLoop({
         items={tags.map((t) => ({ label: t }))}
         direction="left"
         speed={40}
-        hoverSpeed={20}
+        hoverSpeed={5}
         rowKey="tags"
       />
 
@@ -85,7 +85,7 @@ export default function CategoriesLoop({
         items={seasons.map((s) => ({ label: s }))}
         direction="right"
         speed={40}
-        hoverSpeed={20}
+        hoverSpeed={5}
         rowKey="seasons"
       />
     </section>

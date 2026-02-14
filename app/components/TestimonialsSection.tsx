@@ -5,7 +5,7 @@ export default function TestimonialsSection() {
   const testimonials = generateFakeTestimonials()
 
   return (
-    <section className="relative bg-white py-16 overflow-hidden">
+    <section className="relative bg-transparent py-16 overflow-hidden">
       <div className="relative mx-auto max-w-360 px-4 md:px-8 lg:px-10">
         {/* Header */}
         <header className="mb-12 text-center">
@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
             </span>
           </div>
 
-          <h2 className="text-4xl font-bold text-gray-900">
+          <h2 className="text-4xl font-bold text-gray-200">
             Trusted by People{" "}
             <span className="italic font-normal">Chosen By Brands</span>
           </h2>
