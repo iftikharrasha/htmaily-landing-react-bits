@@ -1,7 +1,7 @@
 import { generateFakeTestimonials } from "@/lib/testimonials"
 import TestimonialLoop from "./TestimonialLoop"
 
-export default function TestimonialsSection() {
+export default function Testimonials() {
   const testimonials = generateFakeTestimonials()
 
   return (

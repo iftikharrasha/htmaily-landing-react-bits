@@ -55,11 +55,11 @@ export default function SloganText() {
             >
               {/* Heading */}
               <p className="text-4xl text-white/60 mb-1">
-                Let’s create your
+                Let’s re-design your boring emails.
               </p>
 
               <h3 className="md:text-5xl font-semibold text-white uppercase mb-6">
-                Next big idea.
+                To .
               </h3>
 
               {/* Form */}

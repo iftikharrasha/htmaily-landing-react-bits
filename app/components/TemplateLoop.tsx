@@ -15,7 +15,7 @@ const templates: TemplateItem[] = Array.from({ length: 10 }, (_, i) => ({
 
 export default function TemplateLoop() {
   return (
-    <section className="relative bg-black text-white py-16 overflow-hidden">
+    <section className="relative bg-black text-white py-16 overflow-hidden mb-15">
       <div className="relative mx-auto w-full px-4 md:px-8 lg:px-10">
         {/* Header */}
         <div className="mb-12">

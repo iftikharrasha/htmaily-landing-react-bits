@@ -6,12 +6,9 @@ import ShinyText from "@/components/ShinyText"
 import SpotlightCard from "@/components/SpotlightCard"
 import Image from "next/image"
 
-export default function StatsSection() {
+export default function HowItWorks() {
   return (
-    <section className="relative bg-black text-white pb-20 overflow-hidden">
-        {/* relative mx-auto w-full max-w-360 px-4 md:px-8 lg:px-10   */}
-      <div className="">
-        <SpotlightCard className="custom-spotlight-card mx-auto w-full max-w-360 mt-20 flex flex-col items-center justify-center border border-gray-800 rounded-2xl overflow-hidden relative isolate" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="custom-spotlight-card mx-auto w-full max-w-360 p-0! flex flex-col items-center justify-center border border-gray-800 rounded-2xl overflow-hidden relative isolate" spotlightColor="rgba(0, 229, 255, 0.2)">
           <div className="w-full flex flex-col md:flex-row items-center justify-between overflow-hidden">
 
             {/* LEFT CONTENT */}
@@ -146,8 +143,6 @@ export default function StatsSection() {
             </div>
 
           </div>
-        </SpotlightCard>
-      </div>
-    </section>
+      </SpotlightCard>
   )
 }

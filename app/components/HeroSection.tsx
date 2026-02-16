@@ -99,10 +99,10 @@ const HeroSection = () => {
             <Image
               src="/hero-image.svg"
               alt="Hero"
-              className="w-full max-w-full h-auto object-contain"
+              className="w-full max-w-full h-auto object-contain group relative cursor-pointer ease-out will-change-transform z-10 transition-transform duration-300 hover:-translate-y-3 hover:cursor-[url(/cursor.webp),grab]"
               loading="lazy"
               width={1080}
-              height={657}
+              height={648}
             />
           </div>
         </div>
