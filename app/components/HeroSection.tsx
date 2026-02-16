@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TAGS, SEASONS } from "@/lib/templateMetadata"
 import CategoriesLoop from "./CategoriesLoop";
+import ActionButton from "./ActionButton";
 
 const HeroSection = () => {
   return (
@@ -69,25 +70,10 @@ const HeroSection = () => {
           </h1>
 
           {/* CTA Button */}
-          <div className="mt-4 mb-20 w-2/3">
-            <Link
-              href="/playground"
-              className="inline-flex items-center gap-2 rounded-full bg-[#6ED3D3] px-8 py-2 text-base font-semibold text-black shadow-sm shadow-[#6ED3D3]/40 transition-all hover:bg-[#5ac0c0] hover:shadow-lg hover:shadow-[#6ED3D3]/40"
-            >
-              <span>Try it for Free</span>
-              <Image
-                src="/arrow.svg"
-                alt="Arrow"
-                className="h-5 w-5"
-                loading="lazy"
-                width={24}
-                height={24}
-              />
-            </Link>
-          </div>
+          <ActionButton size="lg" text="See in Action" href="/playground" />
 
           {/* Text Loop Section */}
-          <div className="relative z-10 w-full px-0 md:px-30">
+          <div className="relative z-10 w-full px-0 md:px-30 mt-16">
             <CategoriesLoop
               tags={TAGS}
               seasons={SEASONS}

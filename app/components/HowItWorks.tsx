@@ -8,7 +8,14 @@ import Image from "next/image"
 
 export default function HowItWorks() {
   return (
-        <SpotlightCard className="custom-spotlight-card mx-auto w-full max-w-360 p-0! flex flex-col items-center justify-center border border-gray-800 rounded-2xl overflow-hidden relative isolate" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="
+          bg-black! 
+            border
+          border-[rgba(127,33,255,0.6)]
+            shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
+            mx-auto w-full max-w-360 p-0! flex flex-col items-center justify-center isolate
+          " 
+          spotlightColor="rgba(0, 229, 255, 0.2)">
           <div className="w-full flex flex-col md:flex-row items-center justify-between overflow-hidden">
 
             {/* LEFT CONTENT */}
@@ -34,7 +41,6 @@ export default function HowItWorks() {
                   px-4 py-1.5
                   rounded-full
                   border border-[#a1a1aa]/60
-                  bg-[#1b1718]
                   mb-6
                 "
               >
@@ -85,7 +91,7 @@ export default function HowItWorks() {
             <div className="w-full md:flex-1 flex justify-center md:justify-end mt-8 md:mt-0 select-none">
               <div className="md:h-125 h-50 relative">
                   <CardSwap
-                      width={800}
+                      width={600}
                       height={380}
                       cardDistance={60}
                       verticalDistance={70}

@@ -4,8 +4,9 @@ export type EmailStackItem = {
   title: string
   description: string
   features: string[]
-  image: string
+  images: string[]   
   bgColor: string
+  spotlightColor: string
   accentColor: string
   buttonText: string
   buttonHref: string
@@ -23,9 +24,17 @@ export const EMAIL_STACKS: EmailStackItem[] = [
       "CTA-focused layout",
       "Dark & light modes",
     ],
-    image: "/stack1.avif",
+    images: [
+      "/stack4.avif",
+      "/stack5.avif",
+      "/stack1.avif",
+      "/stack2.avif",
+      "/stack3.avif",
+    ],
     bgColor: "#E0E7FF", // soft indigo
+    // bgColor: "#000000", 
     accentColor: "#6366F1",
+    spotlightColor: "rgba(99, 102, 241, 0.2)",
     buttonText: "View Header Templates",
     buttonHref: "/templates/headers",
   },
@@ -40,9 +49,17 @@ export const EMAIL_STACKS: EmailStackItem[] = [
       "Modular sections",
       "Email-client tested",
     ],
-    image: "/stack1.avif",
+    images: [
+      "/stack1.avif",
+      "/stack5.avif",
+      "/stack2.avif",
+      "/stack3.avif",
+      "/stack4.avif",
+    ],
     bgColor: "#FEF3C7", // warm yellow
+    // bgColor: "#000000", 
     accentColor: "#F59E0B",
+    spotlightColor: "rgba(245, 158, 11, 0.2)",
     buttonText: "Explore Content Blocks",
     buttonHref: "/templates/body",
   },
@@ -57,9 +74,17 @@ export const EMAIL_STACKS: EmailStackItem[] = [
       "Brand consistency",
       "Minimal & compliant",
     ],
-    image: "/stack1.avif",
+    images: [
+      "/stack3.avif",
+      "/stack1.avif",
+      "/stack2.avif",
+      "/stack4.avif",
+      "/stack5.avif",
+    ],
     bgColor: "#ECFEFF", // cyan
-    accentColor: "#06B6D4",
+    // bgColor: "#000000",
+    accentColor: "#c9fff7",
+    spotlightColor: "rgba(201, 255, 247, 0.2)",
     buttonText: "Browse Footer Designs",
     buttonHref: "/templates/footer",
   },

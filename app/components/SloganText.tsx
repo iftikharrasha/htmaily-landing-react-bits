@@ -2,6 +2,7 @@
 
 import TextPressure from "@/components/TextPressure";
 import Image from "next/image";
+import ActionButton from "./ActionButton";
 
 export default function SloganText() {
   return (
@@ -15,6 +16,7 @@ export default function SloganText() {
         playsInline
         preload="none"
         className="
+          saturate-0
           absolute inset-0
           w-full h-full
           object-cover
@@ -83,22 +85,7 @@ export default function SloganText() {
                   required
                 />
 
-                <button
-                  type="submit"
-                  className="
-                    rounded-xl
-                    bg-white
-                    px-6 py-3
-                    text-black
-                    font-medium
-                    transition
-                    hover:bg-white/90
-                    active:scale-[0.98]
-                    whitespace-nowrap
-                  "
-                >
-                  Subscribe
-                </button>
+                <ActionButton size="lg" text="Subscribe" href="/templates" />
               </form>
 
               {/* Helper text */}
