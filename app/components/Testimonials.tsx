@@ -1,25 +1,15 @@
 import { generateFakeTestimonials } from "@/lib/testimonials"
 import TestimonialLoop from "./TestimonialLoop"
+import SectionTitle from "./SectionTitle"
 
 export default function Testimonials() {
   const testimonials = generateFakeTestimonials()
 
   return (
     <section className="relative bg-transparent py-16 overflow-hidden">
-      <div className="relative mx-auto max-w-360 px-4 md:px-8 lg:px-10">
-        {/* Header */}
-        <header className="mb-12 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#5ac0c0] bg-white mb-4">
-            <span className="text-xs font-medium text-[#5ac0c0]">
-              Referral From People
-            </span>
-          </div>
-
-          <h2 className="text-4xl font-bold text-gray-200">
-            Trusted by People{" "}
-            <span className="italic font-normal">Chosen By Brands</span>
-          </h2>
-        </header>
+      <div className="relative mx-auto px-4 md:px-8 lg:px-10">
+         {/* Header */}
+         <SectionTitle title="Trusted by" subTitle="Brand Owners" />
 
         {/* Row 1 */}
         <div className="mb-3">

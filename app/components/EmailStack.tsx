@@ -5,11 +5,15 @@ import { EMAIL_STACKS } from "@/lib/emailStackData"
 import EmailStackCard from "./EmailStackCard."
 import HowItWorks from "./HowItWorks"
 import ActionButton from "./ActionButton"
+import SectionTitle from "./SectionTitle"
 
 export default function EmailStack() {
   return (
     <section>
-      <div className="mx-auto w-full max-w-280 will-change-transform transform-gpu backface-hidden">
+      <div className="mx-auto w-full max-w-280 will-change-transform transform-gpu backface-hidden px-4 md:px-0">
+        {/* Header */}
+        <SectionTitle title="Simplified Design" subTitle="With Variations" />
+
         <ScrollStack
             gap={100}
             perspective={1200}

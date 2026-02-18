@@ -55,14 +55,14 @@ export default function SloganText() {
                 p-6 md:p-8
               "
             >
-              {/* Heading */}
-              <p className="text-4xl text-white/60 mb-1">
-                Let’s re-design your boring emails.
-              </p>
+              {/* Header */}
+              <h2 className="text-lg lg:text-4xl font-bold text-[#FAFAFA] mb-1 md:mb-2">
+                Let&apos;s re-design your
+              </h2>
 
-              <h3 className="md:text-5xl font-semibold text-white uppercase mb-6">
-                To .
-              </h3>
+              <h6 className="text-lg lg:text-4xl italic font-normal text-white/60 uppercase mb-6">
+                <span className="line-through">Booooring</span> emails.
+              </h6>
 
               {/* Form */}
               <form className="flex flex-col sm:flex-row gap-3">

@@ -33,7 +33,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({ text, href, size = "default
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         asChild
-        className="group relative z-10 flex items-center justify-center h-10 rounded-full border border-white/60 bg-[#ffffff] px-10 uppercase font-bold text-12 text-[#000000] tracking-tight overflow-hidden transition-all duration-200 hover:bg-[#ffffff] shadow-[0_0_10px_2px_rgba(255,170,129,0.75)] space-x-1 cursor-pointer"
+        className="group relative z-10 flex items-center justify-center rounded-full border border-white/60 bg-[#ffffff] px-8 md:px-10 uppercase font-bold text-12 text-[#000000] tracking-tight overflow-hidden transition-all duration-200 hover:bg-[#ffffff] shadow-[0_0_10px_2px_rgba(255,170,129,0.75)] space-x-1 cursor-pointer"
       >
         <a href={href} className="flex items-center space-x-1 relative z-10">
           {/* Cursor-following inner glow */}
@@ -62,16 +62,16 @@ const ActionButton: React.FC<ActionButtonProps> = ({ text, href, size = "default
             {/* Text */}
             <span className="transition-transform duration-300 group-hover:-translate-x-3">
                 <ShinyText
-                text={text}
-                speed={2}
-                delay={3}
-                color="#000000"
-                shineColor="#ffffff"
-                spread={50}
-                direction="left"
-                yoyo={true}
-                pauseOnHover={false}
-                disabled={false}
+                  text={text}
+                  speed={2}
+                  delay={3}
+                  color="#000000"
+                  shineColor="#ffffff"
+                  spread={50}
+                  direction="left"
+                  yoyo={true}
+                  pauseOnHover={false}
+                  disabled={false}
                 />
             </span>
 

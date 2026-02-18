@@ -68,7 +68,7 @@ export default function EmailStackCard({ item }: Props) {
             />
           </span>
 
-          <h3 className="text-3xl font-semibold text-[#FFFFFF] mb-4">
+          <h3 className="text-2xl font-semibold text-[#FFFFFF] mb-4">
             {item.title}
           </h3>
 

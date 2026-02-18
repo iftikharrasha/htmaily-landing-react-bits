@@ -41,7 +41,7 @@ function TextLoopRow({
             border border-white/10
             px-4
             py-1
-            text-sm
+            text-xs md:text-sm
             font-medium
             text-white
             backdrop-blur-sm

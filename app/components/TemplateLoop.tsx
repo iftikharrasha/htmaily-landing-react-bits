@@ -2,6 +2,7 @@
 
 import LogoLoop from "@/components/LogoLoop"
 import Image from "next/image"
+import SectionTitle from "./SectionTitle";
 
 type TemplateItem = {
   src: string
@@ -18,13 +19,7 @@ export default function TemplateLoop() {
     <section className="relative bg-black text-white py-16 overflow-hidden mb-15">
       <div className="relative mx-auto w-full px-4 md:px-8 lg:px-10">
         {/* Header */}
-        <div className="mb-12">
-          <h2
-            className="text-4xl font-bold text-[#FAFAFA]"
-          >
-            Explore Templates
-          </h2>
-        </div>
+        <SectionTitle title="Explore Templates" subTitle="From Every Industry" />
 
         {/* Infinite loop template showcase */}
         <LogoLoop
@@ -39,16 +34,15 @@ export default function TemplateLoop() {
             ariaLabel="Template previews"
             renderItem={(item) => (
             <div className="relative shrink-0 pt-4">
-                <div
-                    className="
-                        group
-                        relative
-                        w-90
-                        cursor-pointer
-                        transition-transform duration-300 ease-out
-                        will-change-transform
-                        hover:-translate-y-3 z-10
-                    "
+                <div className="
+                    group
+                    relative
+                    w-90
+                    cursor-pointer
+                    transition-transform duration-300 ease-out
+                    will-change-transform
+                    hover:-translate-y-3 z-10
+                  "
                 >
                     <div className="relative rounded-xl shadow-2xl">
                         <Image
