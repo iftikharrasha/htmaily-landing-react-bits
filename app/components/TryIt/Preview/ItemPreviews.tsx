@@ -4,9 +4,9 @@
 export function HeaderLogoOnlyPreview() {
   return (
     <div className="flex items-center gap-2">
-      <div className="w-8 h-8 bg-white/20 rounded-full" />
+      <div className="w-8 h-8 bg-transparent border-2 border-[#07c983] rounded-full" />
       <div className="flex-1">
-        <div className="w-24 h-3 bg-white/20 rounded" />
+        <div className="w-32 h-6 bg-transparent border-2 border-[#07c983] rounded" />
       </div>
     </div>
   );
@@ -15,11 +15,11 @@ export function HeaderLogoOnlyPreview() {
 export function HeaderLogoRightContentPreview() {
   return (
     <div className="flex items-center justify-between">
-      <div className="w-8 h-8 bg-white/20 rounded-full" />
+      <div className="w-8 h-8 bg-transparent border-2 border-[#07c983] rounded-full" />
       <div className="flex gap-3">
-        <div className="w-12 h-3 bg-white/20 rounded" />
-        <div className="w-12 h-3 bg-white/20 rounded" />
-        <div className="w-12 h-3 bg-white/20 rounded" />
+        <div className="w-12 h-6  bg-transparent border-2 border-[#07c983] rounded" />
+        <div className="w-12 h-6  bg-transparent border-2 border-[#07c983] rounded" />
+        <div className="w-12 h-6  bg-transparent border-2 border-[#07c983] rounded" />
       </div>
     </div>
   );
@@ -29,7 +29,7 @@ export function HeaderLogoRightContentPreview() {
 export function HeadlineSinglePreview() {
   return (
     <div className="space-y-2">
-      <div className="w-3/4 h-5 bg-white/20 rounded" />
+      <div className="w-3/4 h-5 bg-transparent border-2 border-[#07c983] rounded" />
     </div>
   );
 }
@@ -38,9 +38,9 @@ export function HeadlineSinglePreview() {
 export function ParagraphBodyPreview() {
   return (
     <div className="space-y-1.5">
-      <div className="w-full h-3 bg-white/20 rounded" />
-      <div className="w-full h-3 bg-white/20 rounded" />
-      <div className="w-2/3 h-3 bg-white/20 rounded" />
+      <div className="w-full h-3 bg-transparent border-2 border-[#07c983] rounded" />
+      <div className="w-full h-3 bg-transparent border-2 border-[#07c983] rounded" />
+      <div className="w-2/3 h-3 bg-transparent border-2 border-[#07c983] rounded" />
     </div>
   );
 }
@@ -48,7 +48,7 @@ export function ParagraphBodyPreview() {
 // Image Previews
 export function ImageFullPreview() {
   return (
-    <div className="w-full h-12 bg-white/20 rounded-lg" />
+    <div className="w-full h-12 bg-transparent border-2 border-[#07c983] rounded-lg" />
   );
 }
 

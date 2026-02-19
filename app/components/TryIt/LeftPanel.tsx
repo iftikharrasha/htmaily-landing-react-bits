@@ -116,11 +116,35 @@ export default function LeftPanel({ state, dispatch }: Props) {
         onValueChange={handleTabChange}
         orientation="vertical"
       >
-        <TabsList className="mb-6">
-          <TabsTrigger value="header" disabled={isSimulateMode}>Header</TabsTrigger>
-          <TabsTrigger value="headline" disabled={isSimulateMode}>Headline</TabsTrigger>
-          <TabsTrigger value="paragraph" disabled={isSimulateMode}>Paragraph</TabsTrigger>
-          <TabsTrigger value="image" disabled={isSimulateMode}>Image</TabsTrigger>
+        <TabsList className="mb-6  bg-transparent rounded-lg p-0 w-full justify-start space-y-1">
+          <TabsTrigger 
+            value="header" 
+            disabled={isSimulateMode}
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+          >
+            Header
+          </TabsTrigger>
+          <TabsTrigger 
+            value="headline" 
+            disabled={isSimulateMode}
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+          >
+            Headline
+          </TabsTrigger>
+          <TabsTrigger 
+            value="paragraph" 
+            disabled={isSimulateMode}
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+          >
+            Paragraph
+          </TabsTrigger>
+          <TabsTrigger 
+            value="image" 
+            disabled={isSimulateMode}
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+          >
+            Image
+          </TabsTrigger>
         </TabsList>
 
         {/* Header Tab */}
@@ -204,47 +228,55 @@ function ItemCard({
   const PreviewComponent = getItemPreview(item.id);
 
   return (
-    <button className="w-70 border border-white/10 rounded-lg overflow-hidden"
+    <div>
+      {/* Item Header */}
+      <div className="flex-1 flex items-center justify-between gap-2 mb-2">
+          <div className="flex-1 text-left">
+              <div className="text-sm font-medium text-white/50">{item.label}</div>
+          </div>
+      </div>
+
+      <button className={`
+            relative w-full min-w-70 min-h-28 
+            border border-white/10 rounded-lg overflow-hidden 
+            bg-[url('/mask-1.png')] bg-cover bg-center
+            ${isTryMode ? 'cursor-pointer hover:bg-white/5' : 'opacity-50'}
+            transition
+        `}
             onClick={(e) => {
               e.stopPropagation();
               onAdd();
             }}
             disabled={!isTryMode}
-        >
-        {/* Item Header */}
-        <div 
-            className={`
-                flex flex-col gap-3 p-3
-                ${isTryMode ? 'cursor-pointer hover:bg-white/5' : 'opacity-50'}
-                transition
-            `}
-            onClick={isTryMode ? onToggle : undefined}
-        >
-            {/* Content and Add Button */}
-            <div className="flex-1 flex items-center justify-between gap-2">
-                <div className="flex-1 text-left">
-                    <div className="text-sm font-medium text-white">{item.label}</div>
-                </div>
-            </div>
+          >
+          {/* Overlay div  */}
+          <div className="absolute inset-0 bg-[#07c983]/20 opacity-50"></div>
 
-            
-            {/* Visual Preview Box */}
-            <div className="w-full h-full rounded-lg flex items-center justify-center p-2 shrink-0">
-                {PreviewComponent ? (
-                    <div className="w-full">
-                    {/* Fix: Use a wrapper div and render the component with createElement */}
-                    {PreviewComponent && (
-                        <div className="w-full">
-                        {React.createElement(PreviewComponent)}
-                        </div>
-                    )}
-                    </div>
-                ) : (
-                    <div className="text-[8px] text-white/30">Preview</div>
-                )}
-            </div>
+          <div 
+              className={`
+                  relative z-10
+                  flex flex-col gap-3 p-3
+              `}
+              onClick={isTryMode ? onToggle : undefined}
+          >
+              {/* Visual Preview Box */}
+              <div className="w-full h-full rounded-lg flex items-center justify-center p-2 shrink-0">
+                  {PreviewComponent ? (
+                      <div className="w-full">
+                      {/* Fix: Use a wrapper div and render the component with createElement */}
+                      {PreviewComponent && (
+                          <div className="w-full">
+                          {React.createElement(PreviewComponent)}
+                          </div>
+                      )}
+                      </div>
+                  ) : (
+                      <div className="text-[8px] text-white/30">Preview</div>
+                  )}
+              </div>
 
-        </div>
-    </button>
+          </div>
+      </button>
+    </div>
   );
 }

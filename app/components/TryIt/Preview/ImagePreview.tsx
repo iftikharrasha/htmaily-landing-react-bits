@@ -27,10 +27,10 @@ export default function ImagePreview({ variantId }: Props) {
         <div>
             <Image
                 loading="lazy"
-                src="/stack2.avif"
+                src="/image-1.png"
                 alt="layer"
                 className="w-full h-full"
-                width={476}
+                width={365}
                 height={394}
             />
         </div>

@@ -50,11 +50,11 @@ export const PARAGRAPH_ITEMS: ItemType[] = [
   {
     id: "paragraph-body",
     category: "paragraph",
-    label: "Text — Body Copy",
+    label: "Text — Paragraph",
     description: "Paragraph text variations",
     variants: [
-      { id: "para-left", label: "Left Aligned" },
-      { id: "para-center", label: "Center Aligned" },
+      { id: "paragraph-left", label: "Left Aligned" },
+      { id: "paragraph-center", label: "Center Aligned" },
     ]
   }
 ];
@@ -67,8 +67,8 @@ export const IMAGE_ITEMS: ItemType[] = [
     label: "Image — Full Width",
     description: "Full width image with padding options",
     variants: [
-      { id: "image-full-padded", label: "With Padding" },
       { id: "image-full-edge", label: "Edge to Edge" },
+      { id: "image-full-padded", label: "With Padding" },
     ]
   }
 ];

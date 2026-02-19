@@ -18,9 +18,9 @@ export function ActiveBlocksController({
 }: Props) {
   if (segments.length === 0) {
     return (
-      <div className="text-center py-8">
-        <p className="text-sm text-white/30">
-          No blocks added yet. Click on a block type to start building.
+      <div className="text-center px-8">
+        <p className="text-sm text-white/70">
+          Your selected blocks will appear here.
         </p>
       </div>
     );
@@ -49,7 +49,7 @@ export function ActiveBlocksController({
             {/* Header row */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-xs px-1.5 py-0.5 rounded bg-white/10 text-white/60 uppercase">
+                <span className="text-xs px-1.5 py-0.5 rounded bg-[#07c983]/10 text-[#07c983] border-[#07c983]/30! uppercase">
                   {segment.category}
                 </span>
                 <span className="text-sm font-medium text-white">
