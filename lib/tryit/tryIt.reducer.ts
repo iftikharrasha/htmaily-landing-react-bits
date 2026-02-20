@@ -91,6 +91,23 @@ export function tryItReducer(
       };
     }
 
+    case "REORDER_SEGMENTS": {
+      const { sourceIndex, destinationIndex } = action;
+      
+      // If indices are the same, do nothing
+      if (sourceIndex === destinationIndex) return state;
+      
+      // Create a new array with reordered items
+      const newSegments = [...state.segments];
+      const [movedItem] = newSegments.splice(sourceIndex, 1);
+      newSegments.splice(destinationIndex, 0, movedItem);
+      
+      return {
+        ...state,
+        segments: newSegments,
+      };
+    }
+
     case "SET_VARIANT":
       return {
         ...state,

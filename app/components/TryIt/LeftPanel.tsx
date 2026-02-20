@@ -78,6 +78,16 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
     dispatch({ type: "SET_ACTIVE_TAB", tab: value as SegmentType });
   };
 
+  
+  const handleReorder = (sourceIndex: number, destinationIndex: number) => {
+    if (!isTryMode) return;
+    dispatch({
+      type: "REORDER_SEGMENTS",
+      sourceIndex,
+      destinationIndex,
+    });
+  };
+
   const getItemsForTab = (tab: SegmentType): ItemType[] => {
     switch(tab) {
       case "header": return HEADER_ITEMS;
@@ -217,7 +227,8 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
           mode={state.mode.toLowerCase() as "try" | "simulate"}
           onVariantChange={handleVariantChange}
           onDelete={handleDelete}
-          onDuplicate={handleDuplicate}  // Add this
+          onDuplicate={handleDuplicate}
+          onReorder={handleReorder}  // Add this
           onHover={onHover}
           hoveredInstanceId={hoveredInstanceId}
         />

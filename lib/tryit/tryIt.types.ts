@@ -75,8 +75,13 @@ export type TryItAction =
       variants: Variant[];
     }
   | {
-      type: "DUPLICATE_SEGMENT";  // New action
-      instanceId: string;          // The segment to duplicate
+      type: "DUPLICATE_SEGMENT";
+      instanceId: string;
+    }
+  | {
+      type: "REORDER_SEGMENTS"; 
+      sourceIndex: number;
+      destinationIndex: number;
     }
   | {
       type: "SET_VARIANT";
