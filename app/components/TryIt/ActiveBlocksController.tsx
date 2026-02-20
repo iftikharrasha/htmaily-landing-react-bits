@@ -92,7 +92,7 @@ export function ActiveBlocksController({
                       transition-all
                       flex items-center justify-center
                       ${isActive 
-                        ? 'bg-white/20 scale-110' 
+                        ? 'bg-white/20 scale-110 animate-pulse' 
                         : 'hover:bg-white/10'
                       }
                       ${mode !== "try" ? 'cursor-default' : 'cursor-pointer'}

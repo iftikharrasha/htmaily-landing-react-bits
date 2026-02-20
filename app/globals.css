@@ -55,6 +55,22 @@
   /* Fonts */
   --font-heading: var(--font-inria), serif;
   --font-body: var(--font-redhat), sans-serif;
+
+  
+  --animate-boat: boat;
+  @keyframes boat {
+    0% {
+      transform: translateX(0px) translateY(0px) rotate(0deg);
+    }
+
+    50% {
+      transform: translateX(4px) translateY(-20px) rotate(-5deg);
+    }
+
+    100% {
+      transform: translateX(0px) translateY(0px) rotate(0deg);
+    }
+  }
 }
 
 /* =========================

@@ -95,7 +95,7 @@ export default function LeftPanel({ state, dispatch }: Props) {
                 : "bg-white/10 text-white"
             }`}
           >
-            Try It
+            Reset
           </button>
           <button
             onClick={handleSimulateMode}

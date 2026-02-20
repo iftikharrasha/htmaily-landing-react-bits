@@ -56,10 +56,10 @@ export const EMAIL_STACKS: EmailStackItem[] = [
       "/stack3.avif",
       "/stack4.avif",
     ],
-    bgColor: "#FEF3C7", // warm yellow
-    // bgColor: "#000000", 
-    accentColor: "#F59E0B",
-    spotlightColor: "rgba(245, 158, 11, 0.2)",
+    bgColor: "#ECFEFF", // cyan
+    // bgColor: "#000000",
+    accentColor: "#c9fff7",
+    spotlightColor: "rgba(201, 255, 247, 0.2)",
     buttonText: "Explore Content Blocks",
     buttonHref: "/templates/body",
   },
@@ -81,10 +81,10 @@ export const EMAIL_STACKS: EmailStackItem[] = [
       "/stack4.avif",
       "/stack5.avif",
     ],
-    bgColor: "#ECFEFF", // cyan
-    // bgColor: "#000000",
-    accentColor: "#c9fff7",
-    spotlightColor: "rgba(201, 255, 247, 0.2)",
+    bgColor: "#18E299", // warm yellow
+    // bgColor: "#000000", 
+    accentColor: "#18E299",
+    spotlightColor: "rgba(7, 201, 131, 0.2)",
     buttonText: "Browse Footer Designs",
     buttonHref: "/templates/footer",
   },
