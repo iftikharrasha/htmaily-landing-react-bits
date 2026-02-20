@@ -10,7 +10,7 @@ export const HEADER_ITEMS: ItemType[] = [
   {
     id: "header-logo-only",
     category: "header",
-    label: "Header — Logo Only",
+    label: "Logo Only",
     description: "Simple logo placements",
     variants: [
       { id: "logo-left", label: "Logo Left" },
@@ -21,7 +21,7 @@ export const HEADER_ITEMS: ItemType[] = [
   {
     id: "header-logo-right-content",
     category: "header",
-    label: "Header — Logo Left + Right Content",
+    label: "Logo Left + Right Content",
     description: "Logo with navigation or metadata",
     variants: [
       { id: "logo-left-links", label: "Logo + Navigation Links" },
@@ -35,7 +35,7 @@ export const HEADLINE_ITEMS: ItemType[] = [
   {
     id: "headline-single",
     category: "headline",
-    label: "Text — Headline",
+    label: "Headline",
     description: "Single headline variations",
     variants: [
       { id: "headline-left", label: "Left Aligned" },
@@ -50,7 +50,7 @@ export const PARAGRAPH_ITEMS: ItemType[] = [
   {
     id: "paragraph-body",
     category: "paragraph",
-    label: "Text — Paragraph",
+    label: "Paragraph",
     description: "Paragraph text variations",
     variants: [
       { id: "paragraph-left", label: "Left Aligned" },
@@ -64,7 +64,7 @@ export const IMAGE_ITEMS: ItemType[] = [
   {
     id: "image-full",
     category: "image",
-    label: "Image — Full Width",
+    label: "Full Width",
     description: "Full width image with padding options",
     variants: [
       { id: "image-full-edge", label: "Edge to Edge" },

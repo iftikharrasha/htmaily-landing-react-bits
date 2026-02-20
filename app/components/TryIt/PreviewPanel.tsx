@@ -5,12 +5,16 @@ import HeaderPreview from "./Preview/HeaderPreview";
 import HeadlinePreview from "./Preview/HeadlinePreview";
 import ImagePreview from "./Preview/ImagePreview";
 import ParagraphPreview from "./Preview/ParagraphPreview";
+import { MousePointerClick } from "lucide-react";
+import AnimatedContent from "@/components/AnimatedContent";
 
 interface PreviewPanelProps {
   segments: SegmentInstance[];
+  hoveredInstanceId?: string | null;
+  onHover?: (instanceId: string | null) => void;
 }
 
-export function PreviewPanel({ segments }: PreviewPanelProps) {
+export function PreviewPanel({ segments, hoveredInstanceId, onHover }: PreviewPanelProps) {
   if (segments.length === 0) {
     return (
       <div className="relative w-full min-w-100 bg-black border border-white/20 rounded-xl shadow-sm p-12 flex items-center justify-center">
@@ -32,12 +36,30 @@ export function PreviewPanel({ segments }: PreviewPanelProps) {
     <div className="relative w-full bg-black border border-white/20 rounded-xl shadow-sm overflow-visible">
         <div className="min-w-100 min-h-150">
             {segments.map((segment) => {
-                // Each segment gets a visual separator to show they're distinct blocks
+                const isHovered = hoveredInstanceId === segment.instanceId;
+                
                 return (
-                <div key={segment.instanceId} className="relative">
+                  <div 
+                    key={segment.instanceId} 
+                    className={`
+                      relative
+                      transition-all duration-200
+                       ${isHovered ? 'animate-pulse pulse-once repeat-[1]' : ''}
+                    `}
+                      // ${isHovered ? 'border border-[#07c983]' : ''}
+                    onMouseEnter={() => onHover?.(segment.instanceId)}
+                    onMouseLeave={() => onHover?.(null)} 
+                  >
+                    {/* Optional hover indicator dot */}
+                    {isHovered && (
+                      <div className="absolute -left-6 top-5 transform -translate-y-1/2 z-20 scale-x-[-1]">
+                          <MousePointerClick size={24} className="text-[#07c983] animate-pulse"/>
+                      </div>
+                    )}
+                    
                     {/* The actual preview */}
                     <PreviewByType segment={segment} />
-                </div>
+                  </div>
                 );
             })}
         </div>

@@ -16,9 +16,11 @@ import { getItemPreview } from "./Preview/ItemPreviews";
 type Props = {
   state: TryItState;
   dispatch: React.Dispatch<TryItAction>;
+  onHover?: (instanceId: string | null) => void;
+  hoveredInstanceId?: string | null;
 };
 
-export default function LeftPanel({ state, dispatch }: Props) {
+export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId }: Props) {
   const [activeTab, setActiveTab] = useState<SegmentType>("header");
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const isTryMode = state.mode === "TRY";
@@ -58,6 +60,14 @@ export default function LeftPanel({ state, dispatch }: Props) {
   const handleDelete = (instanceId: string) => {
     dispatch({
       type: "REMOVE_SEGMENT",
+      instanceId,
+    });
+  };
+
+  const handleDuplicate = (instanceId: string) => {
+    if (!isTryMode) return;
+    dispatch({
+      type: "DUPLICATE_SEGMENT",
       instanceId,
     });
   };
@@ -202,11 +212,14 @@ export default function LeftPanel({ state, dispatch }: Props) {
 
       {/* Active Blocks */}
       <div className="mt-8 border-t border-white/10 pt-6">
-        <ActiveBlocksController 
+       <ActiveBlocksController 
           segments={state.segments}
           mode={state.mode.toLowerCase() as "try" | "simulate"}
           onVariantChange={handleVariantChange}
           onDelete={handleDelete}
+          onDuplicate={handleDuplicate}  // Add this
+          onHover={onHover}
+          hoveredInstanceId={hoveredInstanceId}
         />
       </div>
     </div>

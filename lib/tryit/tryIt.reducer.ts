@@ -58,6 +58,39 @@ export function tryItReducer(
       };
     }
 
+    case "DUPLICATE_SEGMENT": {
+      // Find the segment to duplicate
+      const segmentToDuplicate = state.segments.find(
+        s => s.instanceId === action.instanceId
+      );
+      
+      if (!segmentToDuplicate) return state;
+      
+      // Create a new segment with same properties but new ID
+      const duplicatedSegment: SegmentInstance = {
+        ...segmentToDuplicate,
+        instanceId: crypto.randomUUID(),
+        label: `${segmentToDuplicate.label}`, // Optional: indicate it's a copy
+      };
+      
+      // Find the index of the original segment
+      const index = state.segments.findIndex(
+        s => s.instanceId === action.instanceId
+      );
+      
+      // Insert the duplicate right after the original
+      const newSegments = [
+        ...state.segments.slice(0, index + 1),
+        duplicatedSegment,
+        ...state.segments.slice(index + 1),
+      ];
+      
+      return {
+        ...state,
+        segments: newSegments,
+      };
+    }
+
     case "SET_VARIANT":
       return {
         ...state,

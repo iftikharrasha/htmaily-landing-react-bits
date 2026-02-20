@@ -69,10 +69,14 @@ export type TryItAction =
   | { type: "SET_ACTIVE_TAB"; tab: SegmentType }
   | {
       type: "ADD_SEGMENT";
-      itemId: string;        // Now we add by item ID, not just category
+      itemId: string;
       category: SegmentType;
       label: string;
       variants: Variant[];
+    }
+  | {
+      type: "DUPLICATE_SEGMENT";  // New action
+      instanceId: string;          // The segment to duplicate
     }
   | {
       type: "SET_VARIANT";
