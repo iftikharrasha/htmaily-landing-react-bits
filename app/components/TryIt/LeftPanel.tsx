@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { 
   HEADER_ITEMS,
@@ -12,6 +12,7 @@ import { TryItAction, TryItState, SegmentType, ItemType } from "@/lib/tryit/tryI
 import { ActiveBlocksController } from "./ActiveBlocksController";
 import { useState } from "react";
 import { getItemPreview } from "./Preview/ItemPreviews";
+import { RotateCcw } from "lucide-react";
 
 type Props = {
   state: TryItState;
@@ -23,14 +24,19 @@ type Props = {
 export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId }: Props) {
   const [activeTab, setActiveTab] = useState<SegmentType>("header");
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+
   const isTryMode = state.mode === "TRY";
   const isSimulateMode = state.mode === "SIMULATE";
+  
+  // Check if there are any active blocks
+  const hasActiveBlocks = state.segments.length > 0;
 
   const handleTryMode = () => {
     dispatch({ type: "SET_MODE", mode: "TRY" });
   };
 
   const handleSimulateMode = () => {
+    console.log("Simulate button clicked"); // Debug log
     dispatch({ type: "SIMULATION_START" });
   };
 
@@ -74,8 +80,11 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
 
   const handleTabChange = (value: string) => {
     setActiveTab(value as SegmentType);
-    setExpandedItem(null); // Collapse expanded item when switching tabs
-    dispatch({ type: "SET_ACTIVE_TAB", tab: value as SegmentType });
+    setExpandedItem(null);
+    // Only dispatch if in TRY mode or if simulation is forcing it
+    if (state.mode === "TRY" || state.mode === "SIMULATE") {
+      dispatch({ type: "SET_ACTIVE_TAB", tab: value as SegmentType });
+    }
   };
 
   
@@ -88,15 +97,11 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
     });
   };
 
-  const getItemsForTab = (tab: SegmentType): ItemType[] => {
-    switch(tab) {
-      case "header": return HEADER_ITEMS;
-      case "headline": return HEADLINE_ITEMS;
-      case "paragraph": return PARAGRAPH_ITEMS;
-      case "image": return IMAGE_ITEMS;
-      default: return [];
+  useEffect(() => {
+    if (state.activeTab) {
+      setActiveTab(state.activeTab);
     }
-  };
+  }, [state.activeTab]);
 
   return (
     <div className="flex flex-col h-full">
@@ -107,26 +112,38 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
         </h3>
 
         <div className="flex gap-2">
-          <button
-            onClick={handleTryMode}
-            className={`rounded-full px-4 py-1.5 text-sm ${
-              state.mode === "TRY" 
-                ? "bg-white text-black" 
-                : "bg-white/10 text-white"
-            }`}
-          >
-            Reset
-          </button>
-          <button
-            onClick={handleSimulateMode}
-            className={`rounded-full px-4 py-1.5 text-sm ${
-              state.mode === "SIMULATE" 
-                ? "bg-white text-black" 
-                : "bg-white/10 text-white"
-            }`}
-          >
-            Simulate
-          </button>
+          {/* Reset Button - Only shows when there are active blocks */}
+          {hasActiveBlocks && (
+            <button
+              onClick={handleTryMode}
+              className="
+                flex items-center gap-1
+                rounded-full px-3 py-1.5 text-sm
+                bg-white/10 text-white
+                hover:bg-white/20
+                transition
+                animate-in fade-in duration-200
+              "
+              title="Reset all blocks"
+            >
+              <RotateCcw size={14} />
+              <span>Reset</span>
+            </button>
+          )}
+          
+          {/* Simulate Button - Hidden during simulation */}
+          {!state.simulationRunning && (
+            <button
+              onClick={handleSimulateMode}
+              className={`rounded-full px-4 py-1.5 text-sm ${
+                state.mode === "SIMULATE" 
+                  ? "bg-white text-black" 
+                  : "bg-white/10 text-white"
+              }`}
+            >
+              Simulate
+            </button>
+          )}
         </div>
       </div>
 
@@ -140,28 +157,30 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
           <TabsTrigger 
             value="header" 
             disabled={isSimulateMode}
-            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer disabled:opacity-100"
           >
             Header
           </TabsTrigger>
           <TabsTrigger 
             value="headline" 
+            data-target="headline-tab"
             disabled={isSimulateMode}
-            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+            className="cursor-target headline-tab flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer disabled:opacity-100"
           >
             Headline
           </TabsTrigger>
           <TabsTrigger 
             value="paragraph" 
             disabled={isSimulateMode}
-            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer disabled:opacity-100"
           >
             Paragraph
           </TabsTrigger>
           <TabsTrigger 
             value="image" 
+            data-target="images-tab"
             disabled={isSimulateMode}
-            className="flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer"
+            className="cursor-target images-tab flex-none rounded-sm border border-transparent! px-3 py-1 text-white/50 hover:text-white/70 hover:bg-[#ced3d0]/10 data-[state=active]:font-bold data-[state=active]:border-[#07c983]/30! data-[state=active]:bg-[#07c983]/10 data-[state=active]:text-[#07c983] cursor-pointer disabled:opacity-100"
           >
             Image
           </TabsTrigger>
@@ -169,27 +188,45 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
 
         {/* Header Tab */}
         <TabsContent value="header" className="space-y-2">
-          {HEADER_ITEMS.map((item) => (
-            <ItemCard
+          {HEADER_ITEMS.map((item, index) => (
+            <div
               key={item.id}
-              item={item}
-              onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
-              onAdd={() => handleAddSegment(item)}
-              isTryMode={isTryMode}
-            />
+            >
+                {/* Item Header */}
+                <div className="flex-1 flex items-center justify-between gap-2 mb-2">
+                    <div className="flex-1 text-left">
+                        <div className="text-sm font-medium text-white/50">{item.label}</div>
+                    </div>
+                </div>
+                <div data-target="header-item-2" className={`cursor-target ${index === 1 ? 'header-item-2' : ''}`}>
+                  <ItemCard
+                    key={item.id}
+                    item={item}
+                    onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
+                    onAdd={() => handleAddSegment(item)}
+                    isTryMode={isTryMode && !isSimulateMode}
+                  />
+                </div>
+            </div>
           ))}
         </TabsContent>
 
         {/* Headline Tab */}
         <TabsContent value="headline" className="space-y-2">
-          {HEADLINE_ITEMS.map((item) => (
-            <ItemCard
+          {HEADLINE_ITEMS.map((item, index) => (
+            <div
               key={item.id}
-              item={item}
-              onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
-              onAdd={() => handleAddSegment(item)}
-              isTryMode={isTryMode}
-            />
+              className={`cursor-target ${index === 0 ? 'headline-item-1' : ''}`}
+              data-target="headline-item-1"
+            >
+              <ItemCard
+                key={item.id}
+                item={item}
+                onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
+                onAdd={() => handleAddSegment(item)}
+                isTryMode={isTryMode && !isSimulateMode}
+              />
+            </div>
           ))}
         </TabsContent>
 
@@ -201,21 +238,27 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
               item={item}
               onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
               onAdd={() => handleAddSegment(item)}
-              isTryMode={isTryMode}
+              isTryMode={isTryMode && !isSimulateMode}
             />
           ))}
         </TabsContent>
 
         {/* Image Tab */}
         <TabsContent value="image" className="space-y-2">
-          {IMAGE_ITEMS.map((item) => (
-            <ItemCard
+          {IMAGE_ITEMS.map((item, index) => (
+            <div
               key={item.id}
-              item={item}
-              onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
-              onAdd={() => handleAddSegment(item)}
-              isTryMode={isTryMode}
-            />
+              className={`cursor-target ${index === 0 ? 'image-item-1' : ''}`}
+              data-target="image-item-1"
+            >
+              <ItemCard
+                key={item.id}
+                item={item}
+                onToggle={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
+                onAdd={() => handleAddSegment(item)}
+                isTryMode={isTryMode && !isSimulateMode}
+              />
+            </div>
           ))}
         </TabsContent>
       </Tabs>
@@ -252,20 +295,11 @@ function ItemCard({
   const PreviewComponent = getItemPreview(item.id);
 
   return (
-    <div>
-      {/* Item Header */}
-      <div className="flex-1 flex items-center justify-between gap-2 mb-2">
-          <div className="flex-1 text-left">
-              <div className="text-sm font-medium text-white/50">{item.label}</div>
-          </div>
-      </div>
-
       <button className={`
             relative w-full min-w-70 min-h-28 
             border border-white/10 rounded-lg overflow-hidden 
             bg-[url('/mask-1.png')] bg-cover bg-center
-            ${isTryMode ? 'cursor-pointer hover:bg-white/5' : 'opacity-50'}
-            transition
+            ${isTryMode ? 'cursor-pointer hover:bg-white/5' : 'cursor-not-allowed'}
         `}
             onClick={(e) => {
               e.stopPropagation();
@@ -301,6 +335,5 @@ function ItemCard({
 
           </div>
       </button>
-    </div>
   );
 }

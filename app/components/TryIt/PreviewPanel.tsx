@@ -6,7 +6,6 @@ import HeadlinePreview from "./Preview/HeadlinePreview";
 import ImagePreview from "./Preview/ImagePreview";
 import ParagraphPreview from "./Preview/ParagraphPreview";
 import { MousePointerClick } from "lucide-react";
-import AnimatedContent from "@/components/AnimatedContent";
 
 interface PreviewPanelProps {
   segments: SegmentInstance[];
@@ -44,9 +43,8 @@ export function PreviewPanel({ segments, hoveredInstanceId, onHover }: PreviewPa
                     className={`
                       relative
                       transition-all duration-200
-                       ${isHovered ? 'animate-pulse pulse-once repeat-[1]' : ''}
+                      ${isHovered ? 'animate-pulse pulse-once repeat-[1]' : ''}
                     `}
-                      // ${isHovered ? 'border border-[#07c983]' : ''}
                     onMouseEnter={() => onHover?.(segment.instanceId)}
                     onMouseLeave={() => onHover?.(null)} 
                   >

@@ -1,7 +1,7 @@
 /* ===============================
    MODES
 ================================ */
-export type TryItMode = "IDLE" | "TRY" | "SIMULATE";
+export type TryItMode = "TRY" | "SIMULATE"; // Removed IDLE
 
 /* ===============================
    SEGMENT TYPES (Categories)
@@ -13,14 +13,14 @@ export type SegmentType =
   | "image";
 
 /* ===============================
-   ITEM TYPE (specific block type within a category)
+   ITEM TYPE
 ================================ */
 export type ItemType = {
-  id: string;           // e.g., "header-logo-only"
+  id: string;
   category: SegmentType;
-  label: string;        // e.g., "Header — Logo Only"
+  label: string;
   description?: string;
-  variants: Variant[];  // The 3 variants for this specific item
+  variants: Variant[];
 };
 
 /* ===============================
@@ -32,33 +32,52 @@ export type Variant = {
 };
 
 /* ===============================
-   SEGMENT INSTANCE (one preview block)
+   SEGMENT INSTANCE
 ================================ */
 export type SegmentInstance = {
   instanceId: string;
-  itemId: string;           // Which item type this is
+  itemId: string;
   category: SegmentType;
-  label: string;            // The item label
+  label: string;
   activeVariantId: string;
-  variants: Variant[];      // The variants for THIS specific item
+  variants: Variant[];
 };
+
+/* ===============================
+   TARGET ELEMENT TYPE for cursor highlighting
+================================ */
+export type TargetElement = 
+  | "header-item-2"           // Header item 2 (Logo Left + Right Content)
+  | "headline-tab"            // Headline tab
+  | "headline-item-1"         // Headline item 1
+  | "headline-variant-3"      // Headline variant 3 dot
+  | "images-tab"              // Images tab
+  | "image-item-1"            // Image item 1
+  | null;
 
 /* ===============================
    STATE
 ================================ */
 export type TryItState = {
   mode: TryItMode;
-
-  /** Left panel selection */
   activeTab: SegmentType | null;
-
-  /** Preview stack (right panel) */
   segments: SegmentInstance[];
-
-  /** Simulation */
   simulationRunning: boolean;
-  simulationProgress: number; // 0 → 100
+  simulationProgress: number;
+  simulationStep: SimulationStep;
+  activeFloatingCard: number | null; // 1, 2, or 3
+  targetElement: TargetElement;       // For cursor highlighting
 };
+
+/* ===============================
+   SIMULATION STEP TYPE
+================================ */
+export type SimulationStep = 
+  | "IDLE"
+  | "CARD1"
+  | "CARD2"
+  | "CARD3"
+  | "COMPLETED";
 
 /* ===============================
    ACTIONS
@@ -79,7 +98,7 @@ export type TryItAction =
       instanceId: string;
     }
   | {
-      type: "REORDER_SEGMENTS"; 
+      type: "REORDER_SEGMENTS";
       sourceIndex: number;
       destinationIndex: number;
     }
@@ -96,9 +115,17 @@ export type TryItAction =
       type: "SIMULATION_START";
     }
   | {
-      type: "SIMULATION_PROGRESS";
-      progress: number;
+      type: "SIMULATION_STEP";
+      step: SimulationStep;
     }
   | {
       type: "SIMULATION_END";
+    }
+  | {
+      type: "SET_FLOATING_CARD";
+      card: number | null;
+    }
+  | {
+      type: "SET_TARGET";
+      target: TargetElement;
     };

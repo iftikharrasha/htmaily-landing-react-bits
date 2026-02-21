@@ -8,11 +8,14 @@ import {
    INITIAL STATE
 ================================ */
 export const initialTryItState: TryItState = {
-  mode: "IDLE",
-  activeTab: null,
+  mode: "TRY", // Start in TRY mode
+  activeTab: "header", // Default to header tab
   segments: [],
   simulationRunning: false,
   simulationProgress: 0,
+  simulationStep: "IDLE",
+  activeFloatingCard: null,
+  targetElement: null,
 };
 
 /* ===============================
@@ -24,7 +27,18 @@ export function tryItReducer(
 ): TryItState {
   switch (action.type) {
     case "RESET":
-      return initialTryItState;
+      console.log("Reducer: RESET");
+      return {
+        ...initialTryItState,
+        mode: "TRY",
+        activeTab: "header", // Explicitly set to header
+        segments: [],
+        simulationRunning: false,
+        simulationProgress: 0,
+        simulationStep: "IDLE",
+        activeFloatingCard: null,
+        targetElement: null,
+      };
 
     case "SET_MODE":
       return {
@@ -32,11 +46,13 @@ export function tryItReducer(
         mode: action.mode,
         simulationRunning: action.mode === "SIMULATE",
         simulationProgress: 0,
-        // Only clear segments when switching to TRY mode
+        simulationStep: action.mode === "SIMULATE" ? "CARD1" : "IDLE",
         segments: action.mode === "TRY" ? [] : state.segments,
+        targetElement: null,
       };
 
     case "SET_ACTIVE_TAB":
+      console.log("Reducer: SET_ACTIVE_TAB", action.tab); // Add debug log
       return {
         ...state,
         activeTab: action.tab,
@@ -55,56 +71,6 @@ export function tryItReducer(
       return {
         ...state,
         segments: [...state.segments, newSegment],
-      };
-    }
-
-    case "DUPLICATE_SEGMENT": {
-      // Find the segment to duplicate
-      const segmentToDuplicate = state.segments.find(
-        s => s.instanceId === action.instanceId
-      );
-      
-      if (!segmentToDuplicate) return state;
-      
-      // Create a new segment with same properties but new ID
-      const duplicatedSegment: SegmentInstance = {
-        ...segmentToDuplicate,
-        instanceId: crypto.randomUUID(),
-        label: `${segmentToDuplicate.label}`, // Optional: indicate it's a copy
-      };
-      
-      // Find the index of the original segment
-      const index = state.segments.findIndex(
-        s => s.instanceId === action.instanceId
-      );
-      
-      // Insert the duplicate right after the original
-      const newSegments = [
-        ...state.segments.slice(0, index + 1),
-        duplicatedSegment,
-        ...state.segments.slice(index + 1),
-      ];
-      
-      return {
-        ...state,
-        segments: newSegments,
-      };
-    }
-
-    case "REORDER_SEGMENTS": {
-      const { sourceIndex, destinationIndex } = action;
-      
-      // If indices are the same, do nothing
-      if (sourceIndex === destinationIndex) return state;
-      
-      // Create a new array with reordered items
-      const newSegments = [...state.segments];
-      const [movedItem] = newSegments.splice(sourceIndex, 1);
-      newSegments.splice(destinationIndex, 0, movedItem);
-      
-      return {
-        ...state,
-        segments: newSegments,
       };
     }
 
@@ -129,26 +95,93 @@ export function tryItReducer(
         ),
       };
 
+    case "DUPLICATE_SEGMENT": {
+      const segmentToDuplicate = state.segments.find(
+        s => s.instanceId === action.instanceId
+      );
+      
+      if (!segmentToDuplicate) return state;
+      
+      const duplicatedSegment: SegmentInstance = {
+        ...segmentToDuplicate,
+        instanceId: crypto.randomUUID(),
+        label: `${segmentToDuplicate.label}`,
+      };
+      
+      const index = state.segments.findIndex(
+        s => s.instanceId === action.instanceId
+      );
+      
+      const newSegments = [
+        ...state.segments.slice(0, index + 1),
+        duplicatedSegment,
+        ...state.segments.slice(index + 1),
+      ];
+      
+      return {
+        ...state,
+        segments: newSegments,
+      };
+    }
+
+    case "REORDER_SEGMENTS": {
+      const { sourceIndex, destinationIndex } = action;
+      
+      if (sourceIndex === destinationIndex) return state;
+      
+      const newSegments = [...state.segments];
+      const [movedItem] = newSegments.splice(sourceIndex, 1);
+      newSegments.splice(destinationIndex, 0, movedItem);
+      
+      return {
+        ...state,
+        segments: newSegments,
+      };
+    }
+
     case "SIMULATION_START":
+      console.log("Reducer: SIMULATION_START"); // Debug log
       return {
         ...state,
         mode: "SIMULATE",
         simulationRunning: true,
         simulationProgress: 0,
-        segments: [],
+        simulationStep: "IDLE", // Start with IDLE, not CARD1
+        activeFloatingCard: null,
+        targetElement: null,
+        activeTab: "header",
+        segments: [], // Start fresh
       };
 
-    case "SIMULATION_PROGRESS":
+    case "SIMULATION_STEP":
       return {
         ...state,
-        simulationProgress: action.progress,
+        simulationStep: action.step,
       };
 
     case "SIMULATION_END":
+      console.log("Reducer: SIMULATION_END");
       return {
         ...state,
+        mode: "TRY",
         simulationRunning: false,
         simulationProgress: 100,
+        simulationStep: "IDLE",
+        activeFloatingCard: null,
+        targetElement: null,
+        activeTab: "header", // Reset to header when simulation ends
+      };
+
+    case "SET_FLOATING_CARD":
+      return {
+        ...state,
+        activeFloatingCard: action.card,
+      };
+
+    case "SET_TARGET":
+      return {
+        ...state,
+        targetElement: action.target,
       };
 
     default:

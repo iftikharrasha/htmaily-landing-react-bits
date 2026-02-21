@@ -235,17 +235,15 @@ export function ActiveBlocksController({
                                       rounded-full 
                                       transition-all
                                       flex items-center justify-center
+                                      ${variant.id === "headline-stacked" ? 'headline-variant-3' : ''}
                                       ${
                                         isActive
                                           ? "bg-white/20 scale-110 animate-pulse"
                                           : "hover:bg-white/10"
                                       }
-                                      ${
-                                        mode !== "try"
-                                          ? "cursor-default"
-                                          : "cursor-pointer"
-                                      }
+                                      ${mode !== "try" ? "cursor-default opacity-50" : "cursor-pointer"}
                                     `}
+                                    data-target={variant.id === "headline-stacked" ? "headline-variant-3" : undefined}
                                     title={variant.label}
                                   >
                                     <span
