@@ -32,88 +32,111 @@ export default function TryItShell() {
     }
   }, [state.targetElement, state.mode]);
 
-  // Scroll lock and position effect
+  // Scroll lock and position effect (IMPROVED)
   useEffect(() => {
-    if (state.mode === "SIMULATE") {
-      console.log("🎬 Simulation started - preparing view");
-      
-      // Find the playground container
-      const playgroundContainer = document.getElementById('try-it-playground');
-      
-      if (playgroundContainer) {
-        console.log("✅ Found container:", playgroundContainer);
-        
-        // Get position
-        const rect = playgroundContainer.getBoundingClientRect();
-        const targetPosition = window.scrollY + rect.top - 40; // 40px from top for breathing room
-        
-        console.log("📍 Current scroll:", window.scrollY);
-        console.log("🎯 Target scroll position:", targetPosition);
-        
-        // Store the target position for later use
-        scrollPositionRef.current = targetPosition;
-        
-        // First, ensure we're not already locked
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        
-        // Scroll to position smoothly
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Lock after scroll completes
-        const scrollTimer = setTimeout(() => {
-          // Get the final scroll position after smooth scroll
-          const finalPosition = window.scrollY;
-          scrollPositionRef.current = finalPosition;
-          
-          // Lock scroll
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${finalPosition}px`;
-          document.body.style.width = '100%';
-          document.body.style.left = '0';
-          document.body.style.right = '0';
-          
-          console.log("🔒 Scroll locked at:", finalPosition);
-        }, 500); // Wait for smooth scroll to complete
-        
-        // Show indicator
-        const indicator = document.createElement('div');
-        indicator.id = 'simulation-scroll-indicator';
-        indicator.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 z-[10000] bg-black/80 text-white px-4 py-2 rounded-full text-sm shadow-lg animate-pulse';
-        indicator.innerText = '🎬 Simulation Mode - Scroll Locked';
-        document.body.appendChild(indicator);
+    if (state.mode !== "SIMULATE") return;
 
-        return () => {
-          clearTimeout(scrollTimer);
-          
-          // Remove scroll lock but DON'T change scroll position
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          document.body.style.left = '';
-          document.body.style.right = '';
-          
-          // Remove indicator
-          const existingIndicator = document.getElementById('simulation-scroll-indicator');
-          if (existingIndicator) {
-            existingIndicator.remove();
-          }
-          
-          // IMPORTANT: Do NOT reset scroll position
-          // Let the user continue from where they were
-          console.log("🔓 Scroll unlocked - position preserved at:", window.scrollY);
-        };
-      } else {
-        console.error("❌ Could not find playground container! Make sure id='try-it-playground' exists");
-      }
+    console.log("🎬 Simulation started - preparing view");
+
+    const playgroundContainer = document.getElementById("try-it-playground");
+    if (!playgroundContainer) {
+      console.error("❌ Could not find playground container!");
+      return;
     }
-  }, [state.mode]); // Remove scrollPositionRef from dependencies
+
+    let rafId: number | null = null;
+    let cancelled = false;
+    let lockedScrollY = 0;
+
+    console.log("✅ Found container:", playgroundContainer);
+
+    // Calculate target position EXACTLY like you did
+    const rect = playgroundContainer.getBoundingClientRect();
+    const targetPosition = window.scrollY + rect.top - 40;
+
+    console.log("📍 Current scroll:", window.scrollY);
+    console.log("🎯 Target scroll position:", targetPosition);
+
+    // Ensure unlocked before scrolling
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+
+    // Smooth scroll
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+
+    // Wait for scroll to ACTUALLY reach target (no timeout)
+    const waitForScrollFinish = () => {
+      if (cancelled) return;
+
+      const currentY = window.scrollY;
+      const distance = Math.abs(currentY - targetPosition);
+
+      if (distance < 2) {
+        // Final scroll position
+        lockedScrollY = window.scrollY;
+
+        // HARD LOCK (same as your original)
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.width = "100%";
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+
+        console.log("🔒 Scroll locked at:", lockedScrollY);
+        return;
+      }
+
+      rafId = requestAnimationFrame(waitForScrollFinish);
+    };
+
+    rafId = requestAnimationFrame(waitForScrollFinish);
+
+    // Show indicator (same as yours)
+    const indicator = document.createElement("div");
+    indicator.id = "simulation-scroll-indicator";
+    indicator.className =
+      "fixed top-4 left-1/2 transform -translate-x-1/2 z-[10000] bg-black/80 text-white px-4 py-2 rounded-full text-sm shadow-lg animate-pulse";
+    indicator.innerText = "🎬 Simulation Mode - Scroll Locked";
+    document.body.appendChild(indicator);
+
+    return () => {
+      cancelled = true;
+
+      if (rafId) cancelAnimationFrame(rafId);
+
+      // IMPORTANT FIX:
+      // Capture current locked position BEFORE removing fixed
+      const scrollY = lockedScrollY;
+
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+
+      // Restore exact scroll position immediately
+      window.scrollTo(0, scrollY);
+
+      // Remove indicator
+      const existingIndicator = document.getElementById(
+        "simulation-scroll-indicator"
+      );
+      if (existingIndicator) {
+        existingIndicator.remove();
+      }
+
+      console.log("🔓 Scroll unlocked - restored to:", scrollY);
+    };
+  }, [state.mode]);
 
   return (
     <div ref={containerRef} className="relative isolate">
