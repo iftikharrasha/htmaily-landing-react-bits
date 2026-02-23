@@ -57,6 +57,7 @@ export default function TemplateLoop() {
                                 hover:opacity-100
                                 rounded-lg
                             "
+                            // transform-gpu transition-transform duration-300 ease-out hover:transform-[perspective(1000px)_translateY(-25px)_scale(1.05)_rotateX(-15deg)]
                             loading="lazy"
                         />
                     </div>

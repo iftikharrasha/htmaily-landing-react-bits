@@ -39,24 +39,20 @@ export default function TestimonialLoop({
           className="
             group
             relative
-            w-95
+            w-90
             transition-transform duration-300 ease-out
           "
         >
           <div
             className="
-              bg-white
-              rounded-xl
-              p-6
-              border border-gray-200
-              transition-shadow duration-300
               flex flex-col justify-between
-              h-full
-              min-h-50
+              bg-neutral-900/50 border border-neutral-800 hover:bg-neutral-900/70
+              p-6  h-full min-h-60 rounded-xl
+              transition-colors duration-200
             "
           >
             {/* Quote */}
-            <p className="text-sm text-gray-700 leading-relaxed flex-1">
+            <p className="text-[16px] text-[#FAFAFA] leading-relaxed flex-1">
               “{item.comment}”
             </p>
 
@@ -70,10 +66,10 @@ export default function TestimonialLoop({
                 className="rounded-full object-cover"
               />
               <div>
-                <p className="text-sm font-semibold text-gray-900">
+                <p className="text-sm font-semibold text-[#FFFFFF]">
                   {item.name}
                 </p>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-[#FAFAFA]/70">
                   {item.profession} @ {item.brand}
                 </p>
               </div>

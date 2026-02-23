@@ -102,13 +102,13 @@ export function useSimulation(
     // STEP 4: Wait to view result
     addTimeout(() => {
       console.log("⏱️ Step 4: Viewing Header");
-    }, 8000);
+    }, 6000);
 
     // STEP 5: Show Card 2
     addTimeout(() => {
       console.log("⏱️ Step 5: Show Card 2");
       dispatch({ type: "SET_FLOATING_CARD", card: 2 });
-    }, 9000);
+    }, 6000);
 
     // ============ HEADLINE SECTION ============
 
