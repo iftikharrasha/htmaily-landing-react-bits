@@ -89,6 +89,19 @@ const HeroSection = () => {
               width={1080}
               height={648}
             />
+
+            {/* below i want the temp1.png tempx.png etc automatic show one after another loop ease in  */}
+            <Image
+              src="/preview-6.png"
+              alt="temp"
+              className="
+                absolute top-12 left-1/2 transform -translate-x-1/2 translate-y-0 z-100 w-94 h-auto cursor-pointer
+                transform-gpu transition-transform duration-300 ease-out hover:transform-[perspective(1000px)_translateY(-5px)_scale(1)_rotateX(-5deg)]
+              "
+              loading="lazy"
+              width={408}
+              height={648}
+            />
           </div>
         </div>
       </div>

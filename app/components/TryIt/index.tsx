@@ -6,69 +6,54 @@ import RevealBackground from "@/components/RevealBackground";
 import { initialTryItState, tryItReducer } from "@/lib/tryit/tryIt.reducer";
 import { SimulationTargetCursorHandle } from "@/components/SimulationTargetCursor";
 import { useSimulation } from "@/lib/tryit/useSimulation";
+import { Progress } from "@/components/ui/progress";
 
 export default function TryIt() {
   const [state, dispatch] = useReducer(tryItReducer, initialTryItState);
   const cursorRef = useRef<SimulationTargetCursorHandle>(null);
   const playgroundRef = useRef<HTMLDivElement | null>(null);
-  const scrollPositionRef = useRef(0);
   const [hoveredInstanceId, setHoveredInstanceId] = useState<string | null>(null);
 
   // Initialize simulation (your custom hook)
-  useSimulation(state, dispatch, cursorRef);
+  const { progress } = useSimulation(state, dispatch, cursorRef);
 
   // Scroll lock + smooth scroll effect
   useEffect(() => {
-    if (state.mode !== "SIMULATE") return;
+  if (state.mode !== "SIMULATE") return;
 
-    const container = playgroundRef.current;
-    if (!container) return;
+  const container = playgroundRef.current;
+  if (!container) return;
 
-    // 1️⃣ Calculate target scroll position
-    const rect = container.getBoundingClientRect();
-    const targetScroll = window.scrollY + rect.top - 40;
+  // 1️⃣ Calculate exact target scroll
+  const rect = container.getBoundingClientRect();
+  const targetScroll = window.scrollY + rect.top - 40;
 
-    // 2️⃣ Instantly move to target
-    window.scrollTo(0, targetScroll);
+  // 2️⃣ Instantly move there (NO smooth scroll)
+  window.scrollTo(0, targetScroll);
 
-    // 3️⃣ Lock scroll immediately
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${targetScroll}px`;
-    document.body.style.width = "100%";
-    document.body.style.left = "0";
-    document.body.style.right = "0";
+  // 3️⃣ Lock immediately
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${targetScroll}px`;
+  document.body.style.width = "100%";
+  document.body.style.left = "0";
+  document.body.style.right = "0";
 
-    // 4️⃣ Add indicator
-    const indicator = document.createElement("div");
-    indicator.id = "simulation-scroll-indicator";
-    indicator.className =
-      "fixed top-4 left-1/2 -translate-x-1/2 z-[10000] bg-black/80 text-white px-4 py-2 rounded-full text-sm shadow-lg animate-pulse";
-    indicator.innerText = "🎬 Simulation Mode - Scroll Locked";
-    document.body.appendChild(indicator);
+  return () => {
+    const lockedScrollY =
+      parseInt(document.body.style.top || "0") * -1;
 
-    return () => {
-      // Get locked position
-      const lockedScrollY =
-        parseInt(document.body.style.top || "0") * -1;
+    // 4️⃣ Unlock cleanly
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
 
-      // 5️⃣ Unlock scroll cleanly
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-
-      window.scrollTo(0, lockedScrollY);
-
-      // Remove indicator
-      const existingIndicator = document.getElementById(
-        "simulation-scroll-indicator"
-      );
-      if (existingIndicator) existingIndicator.remove();
-    };
-  }, [state.mode]);
+    window.scrollTo(0, lockedScrollY);
+  };
+}, [state.mode]);
 
   return (
     <section className="relative w-full min-h-[85vh]">
@@ -101,6 +86,16 @@ export default function TryIt() {
 
         {/* Playground */}
         <div className="relative mx-auto max-w-225" ref={playgroundRef}>
+          {state.mode === "SIMULATE" && (
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 z-10000 bg-black/80 backdrop-blur px-6 py-4 rounded-xl shadow-xl w-[320px]">
+              <div className="flex justify-between text-white text-sm mb-2">
+                <span>🎬 Simulation Mode - Scroll Locked</span>
+                <span>{Math.round(progress)}%</span>
+              </div>
+              <Progress value={progress} />
+            </div>
+          )}
+            
           <Playground
             state={state}
             dispatch={dispatch}

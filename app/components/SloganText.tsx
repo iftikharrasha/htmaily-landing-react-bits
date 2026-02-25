@@ -3,6 +3,7 @@
 import TextPressure from "@/components/TextPressure";
 import Image from "next/image";
 import ActionButton from "./ActionButton";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export default function SloganText() {
   return (
@@ -44,63 +45,72 @@ export default function SloganText() {
         {/* Form layer */}
         <div className="relative z-20 w-full h-full flex items-end justify-center">
           <div className="w-full lg:w-6/12 px-4 pb-10 flex justify-center">
-            <div
-              className="
-                w-full
-                rounded-2xl
-                border border-white/10
-                bg-white/5
-                backdrop-blur-xl
-                shadow-[0_20px_80px_rgba(0,0,0,0.6)]
-                p-6 md:p-8
-              "
-            >
-              {/* Header */}
-              <h2 className="text-lg lg:text-4xl font-bold text-[#FAFAFA] mb-1 md:mb-2">
-                Let&apos;s re-design your
-              </h2>
+            <SpotlightCard className="
+              w-full
+            bg-black! 
+              border
+            border-[rgba(127,33,255,0.6)]
+              shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
+              p-1!
+            " 
+            spotlightColor="rgba(0, 229, 255, 0.2)">
+              <div
+                className="
+                  rounded-2xl
+                  border border-white/10
+                  bg-white/5
+                  backdrop-blur-xl
+                  shadow-[0_20px_80px_rgba(0,0,0,0.6)]
+                  p-6 md:p-8
+                "
+              >
+                {/* Header */}
+                <h2 className="text-lg lg:text-4xl font-bold text-[#FAFAFA] mb-1 md:mb-2">
+                  Let&apos;s re-design your
+                </h2>
 
-              <h6 className="text-lg lg:text-4xl italic font-normal text-white/60 uppercase mb-6">
-                <span className="line-through">Booooring</span> emails.
-              </h6>
+                <h6 className="text-lg lg:text-4xl italic font-normal text-white/60 uppercase mb-6">
+                  <span className="line-through">Booooring</span> emails.
+                </h6>
 
-              {/* Form */}
-              <form className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="
-                    flex-1
-                    rounded-xl
-                    bg-black/40
-                    border border-white/10
-                    px-4 py-3
-                    text-white
-                    placeholder:text-white/40
-                    outline-none
-                    focus:border-white/30
-                    focus:ring-1 focus:ring-white/20
-                    transition
-                  "
-                  required
-                />
+                {/* Form */}
+                <form className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="
+                      flex-1
+                      rounded-xl
+                      bg-black/40
+                      border border-white/10
+                      px-4 py-3
+                      text-white
+                      placeholder:text-white/40
+                      outline-none
+                      focus:border-white/30
+                      focus:ring-1 focus:ring-white/20
+                      transition
+                    "
+                    required
+                  />
 
-                <ActionButton size="lg" text="Subscribe" href="/templates" />
-              </form>
+                  <ActionButton size="lg" text="Subscribe" href="/templates" />
+                </form>
 
-              {/* Helper text */}
-              <p className="mt-2 text-sm text-white/40 flex items-center gap-1">
-                <span>Available for custom work on · </span>
-                <Image
-                  src="/fiverr.svg"
-                  alt="Fiverr"
-                  className="h-3 w-auto"
-                  loading="lazy"
-                  width={38}
-                  height={14}
-                />
-              </p>
-            </div>
+                {/* Helper text */}
+                <p className="mt-2 text-sm text-white/40 flex items-center gap-1">
+                  <span>Available for custom work on · </span>
+                  <Image
+                    src="/fiverr.svg"
+                    alt="Fiverr"
+                    className="h-3 w-auto"
+                    loading="lazy"
+                    width={38}
+                    height={14}
+                  />
+                </p>
+              </div>
+            </SpotlightCard>
           </div>
         </div>
     </div>
