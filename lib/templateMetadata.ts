@@ -42,4 +42,15 @@ export const SEASONS = [
   'Fall'
 ];
 
+export type TemplateItem = {
+  src: string;
+  alt: string;
+};
 
+export const TEMPLATES: TemplateItem[] = Array.from(
+  { length: 10 },
+  (_, i) => ({
+    src: `/preview-${i + 1}.png`,
+    alt: `Template ${i + 1}`,
+  })
+);

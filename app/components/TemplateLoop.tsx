@@ -3,16 +3,8 @@
 import LogoLoop from "@/components/LogoLoop"
 import Image from "next/image"
 import SectionTitle from "./SectionTitle";
-
-type TemplateItem = {
-  src: string
-  alt: string
-}
-
-const templates: TemplateItem[] = Array.from({ length: 10 }, (_, i) => ({
-  src: `/preview-${i + 1}.png`,
-  alt: `Template ${i + 1}`,
-}))
+import { TEMPLATES } from "@/lib/templateMetadata";
+import Magnet from "@/components/Magnet";
 
 export default function TemplateLoop() {
   return (
@@ -23,7 +15,7 @@ export default function TemplateLoop() {
 
         {/* Infinite loop template showcase */}
         <LogoLoop
-            logos={templates}
+            logos={TEMPLATES}
             speed={100}
             hoverSpeed={30}
             direction="left"
@@ -33,7 +25,7 @@ export default function TemplateLoop() {
             fadeOutColor="#000000"
             ariaLabel="Template previews"
             renderItem={(item) => (
-            <div className="relative shrink-0 pt-4">
+            <div className="relative shrink-0 pt-10">
                 <div className="
                     group
                     relative
@@ -45,6 +37,7 @@ export default function TemplateLoop() {
                   "
                 >
                     <div className="relative rounded-xl shadow-2xl">
+                      <Magnet padding={50} disabled={false} magnetStrength={10}>
                         <Image
                             src={item.src}
                             alt={item.alt}
@@ -57,9 +50,9 @@ export default function TemplateLoop() {
                                 hover:opacity-100
                                 rounded-lg
                             "
-                            // transform-gpu transition-transform duration-300 ease-out hover:transform-[perspective(1000px)_translateY(-25px)_scale(1.05)_rotateX(-15deg)]
                             loading="lazy"
                         />
+                      </Magnet>
                     </div>
                 </div>
             </div>

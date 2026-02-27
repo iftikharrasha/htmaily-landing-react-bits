@@ -92,7 +92,7 @@ export default function TryIt() {
                 <span>🎬 Simulation Mode - Scroll Locked</span>
                 <span>{Math.round(progress)}%</span>
               </div>
-              <Progress value={progress} />
+              {/* <Progress value={progress} color="#18E299"/> */}
             </div>
           )}
             

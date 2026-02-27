@@ -5,6 +5,7 @@ import Image from "next/image";
 import { TAGS, SEASONS } from "@/lib/templateMetadata"
 import CategoriesLoop from "./CategoriesLoop";
 import ActionButton from "./ActionButton";
+import HeroPreviewLoop from "./HeroPreviewLoop";
 
 const HeroSection = () => {
   return (
@@ -81,27 +82,22 @@ const HeroSection = () => {
 
           {/* Hero Image */}
           <div className="relative z-10 w-full flex justify-center mt-8 px-4 md:px-0">
-            <Image
-              src="/hero-image.svg"
-              alt="Hero"
-              className="w-full max-w-full h-auto rounded-xl object-contain group relative cursor-pointer ease-out will-change-transform z-10 transition-transform duration-300 hover:-translate-y-3 hover:cursor-[url(/cursor.webp),grab]"
-              loading="lazy"
-              width={1080}
-              height={648}
-            />
+            <div className="w-full">
+              <Image
+                src="/hero-image.svg"
+                alt="Hero"
+                className="w-full transform-gpu
+                  will-change-transform z-10 transition-transform duration-300 hover:-translate-y-3 hover:cursor-[url(/cursor.webp),grab] cursor-pointer ease-out
+                "
+                  // hover:transform-[perspective(1000px)_translateY(-5px)_scale(1)_rotateX(-2deg)] max-w-full h-auto rounded-xl object-contain group relative
+                loading="lazy"
+                width={1080}
+                height={648}
+              />
 
-            {/* below i want the temp1.png tempx.png etc automatic show one after another loop ease in  */}
-            <Image
-              src="/preview-6.png"
-              alt="temp"
-              className="
-                absolute top-12 left-1/2 transform -translate-x-1/2 translate-y-0 z-100 w-94 h-auto cursor-pointer
-                transform-gpu transition-transform duration-300 ease-out hover:transform-[perspective(1000px)_translateY(-5px)_scale(1)_rotateX(-5deg)]
-              "
-              loading="lazy"
-              width={408}
-              height={648}
-            />
+              {/* Hero Preview Loop */}
+              <HeroPreviewLoop/>
+            </div>
           </div>
         </div>
       </div>
