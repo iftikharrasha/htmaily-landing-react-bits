@@ -89,7 +89,6 @@ const HeroSection = () => {
                 className="w-full transform-gpu
                   will-change-transform z-10 transition-transform duration-300 hover:-translate-y-3 hover:cursor-[url(/cursor.webp),grab] cursor-pointer ease-out
                 "
-                  // hover:transform-[perspective(1000px)_translateY(-5px)_scale(1)_rotateX(-2deg)] max-w-full h-auto rounded-xl object-contain group relative
                 loading="lazy"
                 width={1080}
                 height={648}
