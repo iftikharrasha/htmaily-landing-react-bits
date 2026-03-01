@@ -27,16 +27,6 @@ export default function EmailStackCard({ item }: Props) {
         shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
       " 
       spotlightColor={item.spotlightColor}>
-      {/* <div className="absolute top-0 left-0 z-0">
-        <Image
-          loading="lazy"
-          src="/layer-1.avif"
-          alt="layer"
-          className="w-full h-full scale-x-[-1]"
-          width={394}
-          height={394}
-        />
-      </div> */}
       <div 
         className={`
           relative z-10

@@ -102,7 +102,6 @@ export default function HowItWorks() {
                   >
                       <Card className="overflow-hidden rounded-xl">
                           <div className="p-1 pl-2 bg-sidebar border-b flex flex-row items-center gap-3">
-                              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-message-square h-8 w-8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> */}
                               <div>
                                   Architech AI
                                   <p className="text-sm text-muted-foreground">Effortless diagramming with a modern, intuitive interface.</p>
@@ -117,7 +116,6 @@ export default function HowItWorks() {
 
                       <Card className="overflow-hidden rounded-xl">
                           <div className="p-1 pl-2 bg-sidebar border-b flex flex-row items-center gap-3">
-                              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-message-square h-8 w-8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> */}
                               <div>
                                   Architech AI
                                   <p className="text-sm text-muted-foreground">Effortless diagramming with a modern, intuitive interface.</p>
@@ -132,7 +130,6 @@ export default function HowItWorks() {
 
                       <Card className="overflow-hidden rounded-xl">
                           <div className="p-1 pl-2 bg-sidebar border-b flex flex-row items-center gap-3">
-                              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-message-square h-8 w-8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> */}
                               <div>
                                   Architech AI
                                   <p className="text-sm text-muted-foreground">Effortless diagramming with a modern, intuitive interface.</p>

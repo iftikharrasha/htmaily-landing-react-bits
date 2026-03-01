@@ -16,8 +16,8 @@ export default function AfterItem() {
       />
 
       {/* Optional overlay label (you can remove later) */}
-      <div className="absolute bottom-4 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
-        After
+      <div className="absolute bottom-4 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+        AFTER
       </div>
     </div>
   )
