@@ -4,13 +4,14 @@ import TextPressure from "@/components/TextPressure";
 import Image from "next/image";
 import ActionButton from "./ActionButton";
 import SpotlightCard from "@/components/SpotlightCard";
+import SectionTitle from "./SectionTitle";
 
 export default function SloganText() {
   return (
     <section>
     <div className="relative bg-black text-white h-[90vh] overflow-hidden">
       {/* Background video */}
-      <video
+      {/* <video
         autoPlay
         loop
         muted
@@ -25,7 +26,16 @@ export default function SloganText() {
         "
       >
         <source src="/globe.mp4" type="video/mp4" />
-      </video>
+      </video> */}
+
+      <Image
+        src="/banner.png"
+        alt="banner"
+        className="w-full h-full object-cover absolute inset-0 z-0 opacity-50 saturate-0"
+        loading="lazy"
+        width={1920}
+        height={1070}
+      />
 
       {/* Bottom gradient overlay */}
       <div
@@ -44,34 +54,24 @@ export default function SloganText() {
 
         {/* Form layer */}
         <div className="relative z-20 w-full h-full flex items-end justify-center">
-          <div className="w-full lg:w-6/12 px-4 pb-10 flex justify-center">
+          <div className="w-full lg:w-6/12 px-4 lg:pb-80 flex justify-center">
             <SpotlightCard className="
               w-full
-            bg-black! 
-              border
-            border-[rgba(127,33,255,0.6)]
-              shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
-              p-1!
+              border-neutral-800
+               bg-neutral-900 overflow-hidden 
+               border   
+               shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
+              p-0!
             " 
             spotlightColor="rgba(0, 229, 255, 0.2)">
               <div
                 className="
                   rounded-2xl
-                  border border-white/10
-                  bg-white/5
-                  backdrop-blur-xl
-                  shadow-[0_20px_80px_rgba(0,0,0,0.6)]
                   p-6 md:p-8
                 "
               >
                 {/* Header */}
-                <h2 className="text-lg lg:text-4xl font-bold text-[#FAFAFA] mb-1 md:mb-2">
-                  Let&apos;s re-design your
-                </h2>
-
-                <h6 className="text-lg lg:text-4xl italic font-normal text-white/60 uppercase mb-6">
-                  <span className="line-through">Booooring</span> emails.
-                </h6>
+                <SectionTitle title="Let&apos;s re-design your" subTitle="Brand Identity" />
 
                 {/* Form */}
                 <form className="flex flex-col sm:flex-row gap-3">
@@ -94,7 +94,7 @@ export default function SloganText() {
                     required
                   />
 
-                  <ActionButton size="lg" text="Subscribe" href="/templates" />
+                  <ActionButton size="lg" text="Connect" href="/templates" />
                 </form>
 
                 {/* Helper text */}
@@ -119,7 +119,7 @@ export default function SloganText() {
       <div className="relative mx-auto w-full px-4 md:px-8 lg:px-10">
         <div className="cursor-pointer">
             <TextPressure
-                text="HTMAILY!"
+                text="EXEEDMAIL!"
                 flex
                 alpha={false}
                 stroke={false}

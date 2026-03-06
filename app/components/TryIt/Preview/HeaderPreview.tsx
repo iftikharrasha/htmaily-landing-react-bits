@@ -52,7 +52,7 @@ export default function HeaderPreview({ variantId }: Props) {
             />
           </div>
           <div className="text-black font-semibold text-lg">
-            HTMAILY
+            EXEEDMAIL
           </div>
         </div>
       );

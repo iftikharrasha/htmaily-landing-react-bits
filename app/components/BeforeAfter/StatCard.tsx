@@ -17,6 +17,7 @@ export default function StatCard({ children, className = "" }: Props) {
         shadow-[inset_0_8px_24px_rgba(255,255,255,0.06),0_16px_24px_rgba(23,11,38,0.2)]
         p-0!
         rounded-xl
+        w-full
         ${className}
       `}
       spotlightColor="rgba(0, 229, 255, 0.15)"

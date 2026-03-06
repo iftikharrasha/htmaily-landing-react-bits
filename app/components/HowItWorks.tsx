@@ -83,7 +83,7 @@ export default function HowItWorks() {
               <h6 className="text-[#FAFAFA] text-3xl">Real Brands Solutions</h6>
 
               <p className="text-sm text-gray-300 leading-relaxed max-w-md">
-                HTMAILY gives you all the tools you need to start building and customize your email template — from zero to the finished product in just a few minutes.
+                EXEEDMAIL gives you all the tools you need to start building and customize your email template — from zero to the finished product in just a few minutes.
               </p>
             </div>
 

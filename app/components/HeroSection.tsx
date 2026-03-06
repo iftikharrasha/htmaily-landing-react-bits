@@ -86,9 +86,8 @@ const HeroSection = () => {
               <Image
                 src="/hero-image.svg"
                 alt="Hero"
-                className="w-full transform-gpu
-                  will-change-transform z-10 transition-transform duration-300 hover:-translate-y-3 hover:cursor-[url(/cursor.webp),grab] cursor-pointer ease-out
-                "
+                className="w-full rounded-xl transform-gpu will-change-transform z-10 transition-transform duration-300 
+                hover:translate-y-0 hover:cursor-[url(/cursor.png),default] cursor-pointer ease-out"
                 loading="lazy"
                 width={1080}
                 height={648}

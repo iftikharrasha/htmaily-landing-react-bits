@@ -34,7 +34,7 @@ export default function MiddleSlider() {
             alt="compose"
             width={600}
             height={114}
-            className="object-cover"
+            className="object-cover w-124"
           />
 
           <div className="relative w-full h-auto overflow-hidden px-2 pt-3">
@@ -52,7 +52,7 @@ export default function MiddleSlider() {
             alt="compose"
             width={600}
             height={114}
-            className="object-cover"
+            className="object-cover w-124"
           />
         </div>
       </div>

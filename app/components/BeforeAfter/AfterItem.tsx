@@ -10,15 +10,10 @@ export default function AfterItem() {
         src="/after.svg"
         alt="after template"
         priority
-        className="w-140 h-auto"
-        width={560}
-        height={544}
+        className="w-[478px] h-auto"
+        width={478}
+        height={464}
       />
-
-      {/* Optional overlay label (you can remove later) */}
-      <div className="absolute bottom-4 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
-        AFTER
-      </div>
     </div>
   )
 }

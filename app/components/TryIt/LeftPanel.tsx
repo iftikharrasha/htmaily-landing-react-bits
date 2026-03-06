@@ -13,6 +13,7 @@ import { ActiveBlocksController } from "./ActiveBlocksController";
 import { useState } from "react";
 import { getItemPreview } from "./Preview/ItemPreviews";
 import { RotateCcw } from "lucide-react";
+import Image from "next/image";
 
 type Props = {
   state: TryItState;
@@ -107,9 +108,14 @@ export default function LeftPanel({ state, dispatch, onHover, hoveredInstanceId 
     <div className="flex flex-col h-full">
       {/* Top Controls */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-white font-semibold text-lg">
-          HTMAILY
-        </h3>
+        <Image
+          src="/exeedmail.svg"
+          alt="Hero"
+          className="w-30 h-auto"
+          loading="lazy"
+          width={124}
+          height={28}
+        />
 
         <div className="flex gap-2">
           {/* Reset Button - Only shows when there are active blocks */}
@@ -296,7 +302,7 @@ function ItemCard({
 
   return (
       <button className={`
-            relative w-full min-w-70 min-h-28 
+            relative min-w-70 min-h-28 
             border border-white/10 rounded-lg overflow-hidden 
             bg-[url('/mask-1.png')] bg-cover bg-center
             ${isTryMode ? 'cursor-pointer hover:bg-white/5' : 'cursor-not-allowed'}
@@ -321,10 +327,9 @@ function ItemCard({
               <div className="w-full h-full rounded-lg flex items-center justify-center p-2 shrink-0">
                   {PreviewComponent ? (
                       <div className="w-full">
-                      {/* Fix: Use a wrapper div and render the component with createElement */}
                       {PreviewComponent && (
                           <div className="w-full">
-                          {React.createElement(PreviewComponent)}
+                            {React.createElement(PreviewComponent)}
                           </div>
                       )}
                       </div>

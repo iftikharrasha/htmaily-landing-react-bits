@@ -62,6 +62,7 @@ export default function Playground({
               {/* Card 1 */}
               {(state.mode === "TRY" || state.activeFloatingCard === 1 || state.activeFloatingCard === 2 || state.activeFloatingCard === 3) && (
                 <div className=" 
+                  hidden xl:flex 
                   absolute top-40 -left-40 w-46 h-auto -rotate-12 shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                   bg-white p-3.5 rounded-2xl border border-gray-100 items-center gap-3 z-30
                   animate-[boat_6s_ease-in-out_infinite] 
@@ -78,6 +79,7 @@ export default function Playground({
               {/* Card 2 */}
               {(state.mode === "TRY" || state.activeFloatingCard === 2 || state.activeFloatingCard === 3) && (
                 <div className="
+                    hidden xl:flex 
                     absolute top-20 -right-40 w-46 h-auto rotate-12 shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                   bg-white p-3.5 rounded-2xl border border-gray-100 items-center gap-3 z-30
                     animate-[boat_8s_ease-in-out_infinite]
@@ -94,6 +96,7 @@ export default function Playground({
               {/* Card 3 */}
               {(state.mode === "TRY" || state.activeFloatingCard === 3) && (
                 <div className="
+                    hidden xl:flex  
                     absolute top-115 -left-45 w-46 h-auto rotate-12 shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                   bg-white p-3.5 rounded-2xl border border-gray-100 items-center gap-3 z-30
                     animate-[boat_4s_ease-in-out_infinite]

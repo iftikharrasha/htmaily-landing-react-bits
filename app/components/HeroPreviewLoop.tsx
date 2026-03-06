@@ -26,11 +26,11 @@ export default function HeroPreviewLoop() {
 
   return (
     <div
-      className="absolute top-12 left-1/2 -translate-x-1/2 translate-y-2 z-20"
+      className="absolute top-5 sm:top-12 left-1/2 -translate-x-1/2 translate-y-2 z-20"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-        <Magnet padding={50} disabled={false} magnetStrength={10}>
+        <Magnet padding={100} disabled={false} magnetStrength={10}>
             <Image
                 key={current.src}
                 src={current.src}
@@ -38,7 +38,7 @@ export default function HeroPreviewLoop() {
                 width={378}
                 height={756}
                 priority={index === 0}
-                className="w-94 h-189 object-contain rounded-lg transition-opacity duration-700 ease-in-out"
+                className="w-26 sm:w-50 lg:w-64 xl:w-94 h-auto object-contain rounded-xs lg:rounded-lg transition-opacity duration-700 ease-in-out"
             />
         </Magnet>
     </div>

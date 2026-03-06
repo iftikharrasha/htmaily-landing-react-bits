@@ -17,7 +17,7 @@ export default function BeforeItem() {
         </p>
 
         <p className="mb-4">
-          I just wanted to reach out and let you know that HTMLY Editor
+          I just wanted to reach out and let you know that EXEEDMAIL Editor
           offers tools and services that can help businesses manage their mail
           design and get better visibility into their marketing world. We
           work with different types of businesses and provide custom designs 
@@ -30,17 +30,16 @@ export default function BeforeItem() {
           if you need more information.
         </p>
 
+        <p>Check <span className="text-blue-600 underline">our website</span> for more information.</p>
+
         {/* Signature */}
         <p className="mt-4">
           Best regards,
           <br />
           Daniel
           <br />
-          Team HTMLY
+          Team EXEEDMAIL
         </p>
-      </div>
-      <div className="absolute bottom-4 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
-        BEFORE
       </div>
     </div>
   )

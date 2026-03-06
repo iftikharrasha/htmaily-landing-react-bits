@@ -6,7 +6,7 @@ export default function Testimonials() {
   const testimonials = generateFakeTestimonials()
 
   return (
-    <section className="relative bg-transparent py-16 overflow-hidden">
+    <section className="relative bg-transparent pt-16 pb-60 overflow-hidden">
       <div className="relative mx-auto px-4 md:px-8 lg:px-10">
          {/* Header */}
          <SectionTitle title="Trusted by" subTitle="Brand Owners" />
@@ -30,11 +30,11 @@ export default function Testimonials() {
         </div>
 
         {/* Row 3 */}
-        <TestimonialLoop
+        {/* <TestimonialLoop
           testimonials={testimonials.slice(3, 7)}
           direction="left"
           speed={25}
-        />
+        /> */}
       </div>
     </section>
   )

@@ -49,7 +49,7 @@ export default function TestimonialLoop({
             border
           border-[rgba(127,33,255,0.6)]
             shadow-[inset_0_8px_24px_rgba(255,255,255,0.09),0_16px_24px_rgba(23,11,38,0.1)]
-            p-1!
+            p-0!
           " 
           spotlightColor="rgba(0, 229, 255, 0.2)">
             <div
