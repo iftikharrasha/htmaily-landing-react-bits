@@ -8,7 +8,7 @@ type Props = {
 export default function SectionTitle({ title, subTitle }: Props)  {
   return (
     <div className="mx-auto w-full max-w-280 mb-4 md:mb-12">
-        <h2 className=" text-2xl lg:text-4xl font-bold text-[#FAFAFA] mb-4 md:mb-12">
+        <h2 className=" text-2xl lg:text-6xl font-bold text-[#FAFAFA] mb-4 md:mb-12">
         {title}<br />
         <span className="relative italic font-normal text-white/60">{subTitle}
           <svg 

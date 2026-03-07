@@ -10,9 +10,9 @@ import ShinyText from "@/components/ShinyText"
 
 export default function BeforeAfter() {
   return (
-    <section className="relative bg-transparent py-20 overflow-hidden">
+    <section className="relative bg-transparent pb-20 overflow-hidden">
       <div className="px-4 md:px-8 lg:px-10">
-        <SectionTitle title="Experience" subTitle="The difference" />
+        {/* <SectionTitle title="Experience" subTitle="The difference" /> */}
         <div className="relative mx-auto w-full max-w-280">
           <div
             className="

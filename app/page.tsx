@@ -1,6 +1,7 @@
 import BeforeAfter from "./components/BeforeAfter";
 import EmailStack from "./components/EmailStack";
 import HeroSection from "./components/HeroSection";
+import MoreTemplates from "./components/MoreTemplates";
 import ScrollRevealSection from "./components/ScrollRevealSection";
 import SloganText from "./components/SloganText";
 import TemplateLoop from "./components/TemplateLoop";
@@ -13,6 +14,7 @@ export default function Home() {
         <HeroSection />
         <TemplateLoop />
         <EmailStack/>
+        <MoreTemplates/>
         <BeforeAfter />
         <ScrollRevealSection />
         <TryIt/>

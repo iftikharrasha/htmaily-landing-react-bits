@@ -1,5 +1,7 @@
 "use client";
 
+import RevealBackground from "@/components/RevealBackground";
+import ShinyText from "@/components/ShinyText";
 import { useRef, useEffect, useState } from "react";
 
 export default function ScrollRevealSection() {
@@ -69,8 +71,10 @@ export default function ScrollRevealSection() {
     <section
       ref={sectionRef}
       className="relative w-full bg-black text-white md:py-0"
-    >
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    > 
+      <RevealBackground image="/reveal.png" radius={120} softness={200} className="h-288" />
+
+      <div className="mx-auto w-full max-w-280 px-4 md:px-0">
         {/* MOBILE */}
         <div className="block md:hidden">
           <div className="mb-12">
@@ -115,7 +119,18 @@ export default function ScrollRevealSection() {
                 time you <br />
                 present{" "}
                 <span className="relative inline-block">
-                  your Email
+                  <ShinyText
+                    text="your Email"
+                    speed={3}
+                    delay={1}
+                    color="#ffffff"
+                    shineColor="#000000"
+                    spread={70}
+                    direction="left"
+                    yoyo={true}
+                    pauseOnHover={false}
+                    disabled={false}
+                  />
                   <svg
                     viewBox="0 0 200 9"
                     fill="none"
@@ -162,7 +177,7 @@ export default function ScrollRevealSection() {
                 >
                   <div className="mb-4">
                     <span className="text-4xl font-bold text-white/20 group-hover:text-[#18E299]/30 transition-colors duration-300">
-                      {String(index + 1).padStart(2, "0")}
+                      {String(index + 1).padStart(2, "0")}  
                     </span>
                   </div>
 
@@ -177,7 +192,7 @@ export default function ScrollRevealSection() {
                   </div>
 
                   {index < segments.length - 1 && (
-                    <div className="mt-8 w-16 h-px bg-gradient-to-r from-[#18E299] to-transparent" />
+                    <div className="mt-8 w-full h-px border border-[#18E299] to-transparent" />
                   )}
                 </div>
               ))}
