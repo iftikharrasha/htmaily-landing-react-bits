@@ -1,5 +1,8 @@
+"use client"
+
 import BeforeAfter from "./components/BeforeAfter";
 import EmailStack from "./components/EmailStack";
+import FAQ from "./components/FAQ";
 import HeroSection from "./components/HeroSection";
 import MoreTemplates from "./components/MoreTemplates";
 import ScrollRevealSection from "./components/ScrollRevealSection";
@@ -19,6 +22,7 @@ export default function Home() {
         <ScrollRevealSection />
         <TryIt/>
         <Testimonials/>
+        <FAQ/>
         <SloganText/>
       </main>
   );

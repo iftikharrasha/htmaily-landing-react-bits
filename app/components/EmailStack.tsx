@@ -15,13 +15,10 @@ export default function EmailStack() {
         <SectionTitle title="Simplified Design" subTitle="With Variations" />
 
         <ScrollStack
-            gap={100}
-            perspective={1200}
-            scale={0.94}
-            itemDistance={100}
+            itemDistance={50}
             itemScale={0.02}
             itemStackDistance={10}
-            stackPosition="15%"
+            stackPosition="12%"
             scaleEndPosition="5%"
             baseScale={0.90}
             scaleDuration={1}

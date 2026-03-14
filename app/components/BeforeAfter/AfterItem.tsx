@@ -10,7 +10,7 @@ export default function AfterItem() {
         src="/after.svg"
         alt="after template"
         priority
-        className="w-[478px] h-auto"
+        className="w-120 h-auto"
         width={478}
         height={464}
       />

@@ -12,6 +12,11 @@ export type EmailStackItem = {
   buttonHref: string
 }
 
+export type Signature = {
+  src: string;
+  alt: string;
+};
+
 export const EMAIL_STACKS: EmailStackItem[] = [
   {
     id: "header",
@@ -89,3 +94,11 @@ export const EMAIL_STACKS: EmailStackItem[] = [
     buttonHref: "/templates/footer",
   },
 ]
+
+export const SIGNATURES: Signature[] = Array.from(
+  { length: 5 },
+  (_, i) => ({
+    src: `/sign-${i + 1}.png`,
+    alt: `Signature ${i + 1}`,
+  })
+);

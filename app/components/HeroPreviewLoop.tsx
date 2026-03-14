@@ -38,7 +38,7 @@ export default function HeroPreviewLoop() {
                 width={378}
                 height={756}
                 priority={index === 0}
-                className="w-26 sm:w-50 lg:w-64 xl:w-94 h-auto object-contain rounded-xs lg:rounded-lg transition-opacity duration-700 ease-in-out"
+                className="border border-transparent hover:border-[#09f] w-26 sm:w-50 lg:w-64 xl:w-94 h-auto object-contain rounded-xs lg:rounded-lg transition-opacity duration-700 ease-in-out"
             />
         </Magnet>
     </div>

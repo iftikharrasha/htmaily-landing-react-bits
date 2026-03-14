@@ -87,16 +87,16 @@ export default function EmailStackCard({ item }: Props) {
 
         {/* RIGHT: GridMotion */}
         <div className="relative h-[400px] lg:h-[400px] w-full overflow-hidden rounded-2xl">
-        <div
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className="relative h-full"
-          >
-            <GridMotion
-              items={item.images} // array of image URLs
-              active={hovered}
-              gradientColor={item.accentColor}
-            />
+          <div
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              className="relative h-full"
+            >
+              <GridMotion
+                items={item.images} // array of image URLs
+                active={hovered}
+                gradientColor={item.accentColor}
+              />
           </div>
         </div>
       </div>

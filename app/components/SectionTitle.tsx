@@ -10,7 +10,7 @@ export default function SectionTitle({ title, subTitle }: Props)  {
     <div className="mx-auto w-full max-w-280 mb-4 md:mb-12">
         <h2 className=" text-2xl lg:text-6xl font-bold text-[#FAFAFA] mb-4 md:mb-12">
         {title}<br />
-        <span className="relative italic font-normal text-white/60">{subTitle}
+        <span className="relative italic font-normal text-[#18E299]">{subTitle}
           <svg 
             viewBox="0 0 200 9" 
             fill="none" 
